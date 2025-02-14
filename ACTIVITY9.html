@@ -244,6 +244,8 @@
     </div>
 
     <script>
+        let quizSubmitted = false;
+
         document.getElementById('darkModeToggle').addEventListener('click', function() {
             document.body.classList.toggle('dark-mode');
         });
@@ -270,6 +272,7 @@
                 }
             }
             document.getElementById('result').innerText = `You scored ${score} out of ${Object.keys(answers).length}.`;
+            quizSubmitted = true;
         });
 
         function showTab(tabName) {
@@ -277,8 +280,14 @@
             tabs.forEach(tab => {
                 tab.classList.remove('active');
             });
+
+            if (tabName === 'correct-answers' && !quizSubmitted) {
+                alert("You cannot access the correct answers without completing the quiz first.");
+                return;
+            }
             document.getElementById(tabName).classList.add('active');
         }
     </script>
 </body>
 </html>
+
