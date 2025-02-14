@@ -88,7 +88,15 @@
             margin-top: 20px;
             font-weight: bold;
         }
-      
+        /* MAP - STA. ROSA */
+        #map {
+            height: 400px;
+            width: 100%; 
+            margin: 20px 0; 
+            border: 2px solid #ccc;
+            border-radius: 5px; 
+        }
+        /* DARK MODE - STA. ROSA */
         body.dark-mode {
             background-color: #121212;
             color: #e0e0e0;
@@ -114,17 +122,34 @@
         .correct {
             color: green;
         }
-  
+        /* ACTIVITY CONTENT - STA. ROSA */
+        .activity-content {
+            background-color: #f0f8ff; 
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            margin: 20px 0; 
+        }
+        .activity-content h2 {
+            margin-top: 0; 
+        }
+        .activity-content ul {
+            padding-left: 20px; 
+        }
     </style>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 </head>
 <body>
     <button id="darkModeToggle" style="position: fixed; top: 20px; right: 20px; background: #007BFF; color: #fff; border: none; border-radius: 4px; padding: 10px; cursor: pointer; z-index: 1000;">Dark Mode</button>
     
     <div class="sidebar">
-        <h2>Navigation</h2>
+        <h2>CHAPTERS</h2>
         <div class="nav">
             <a href="#quiz" onclick="showTab('quiz')">Quiz</a>
             <a href="#correct-answers" onclick="showTab('correct-answers')">Correct Answers</a>
+            <a href="#Activity" onclick="showTab('Activity')">Activity</a>
+            <a href="#Output" onclick="showTab('Output')">Output</a>
         </div>
     </div>
 
@@ -241,9 +266,118 @@
                 <p>10. What does back-end development primarily handle? <span class="correct">✅ Server-side logic</span></p>
             </div>
         </div>
+
+        <div id="Activity" class="tab">
+            <h2>Instructions:</h2>
+            <p><strong>Set Up Your Development Environment</strong></p>
+            <ul>
+                <li>Create an HTML file for your geolocation project.</li>
+            </ul>
+            
+            <p><strong>Implement Geolocation Retrieval</strong></p>
+            <ul>
+                <li>Use the navigator.geolocation.getCurrentPosition() method to retrieve the user's latitude and longitude.</li>
+                <li>Display the retrieved coordinates on the webpage.</li>
+                <li>Display the address on your webpage.</li>
+            </ul>
+            
+            <p><strong>Handle Errors</strong></p>
+            <ul>
+                <li>Implement error handling for cases such as:</li>
+                <ul>
+                    <li>User denies location access.</li>
+                    <li>Location data is unavailable.</li>
+                    <li>Request times out.</li>
+                </ul>
+            </ul>
+            
+            <p><strong>Enhance UI/UX</strong></p>
+            <ul>
+                <li>Add a button that allows users to refresh their location.</li>
+            </ul>
+            
+            <p><strong>Final Output</strong></p>
+            <ul>
+                <li>Your webpage should:</li>
+                <ul>
+                    <li>Show the latitude and longitude of the user.</li>
+                    <li>Display the user's address.</li>
+                    <li>Update the map location dynamically upon request.</li>
+                </ul>
+            </ul>
+        </div>
+
+        <div id="Output" class="tab">
+            <h3>Geolocation with Geoapify</h3>
+            <button onclick="getLocation()">Get Current Location</button>
+            <p id="location-info">Click the button to get your location.</p>
+            <p id="address-info"></p>
+            <div id="map"></div>
+        </div>
     </div>
 
     <script>
+        const geoapifyApiKey = "d4d9278e78a244d39a8df8c34be662b2";
+        let map, marker;
+
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition, showError);
+            } else {
+                document.getElementById("location-info").innerHTML = "Geolocation is not supported by your browser.";
+            }
+        }
+
+        function showPosition(position) {
+            const lat = position.coords.latitude;
+            const lon = position.coords.longitude;
+
+            document.getElementById("location-info").innerHTML = `Latitude: ${lat} <br> Longitude: ${lon}`;
+
+            fetch(`https://api.geoapify.com/v1/geocode/reverse?lat=${lat}&lon=${lon}&apiKey=${geoapifyApiKey}`)
+                .then(response => response.json())
+                .then(data => {
+                    const address = data.features[0]?.properties?.formatted || "Address not found";
+                    document.getElementById("address-info").innerHTML = `<strong>Address:</strong> ${address}`;
+                })
+                .catch(error => console.error("Error fetching address:", error));
+
+            if (!map) {
+                map = L.map('map').setView([lat, lon], 13);
+                L.tileLayer(`https://maps.geoapify.com/v1/tile/osm-bright/{z}/{x}/{y}.png?apiKey=${geoapifyApiKey}`, {
+                    attribution: '© OpenStreetMap contributors, © Geoapify',
+                }).addTo(map);
+                
+                marker = L.marker([lat, lon]).addTo(map)
+                    .bindPopup("You are here!")
+                    .openPopup();
+            } else {
+                map.setView([lat, lon], 13);
+                marker.setLatLng([lat, lon])
+                    .bindPopup("Updated Location!")
+                    .openPopup();
+            }
+        }
+
+        function showError(error) {
+            let message = "";
+            switch (error.code) {
+                case error.PERMISSION_DENIED:
+                    message = "User denied the request for Geolocation.";
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    message = "Location information is unavailable.";
+                    break;
+                case error.TIMEOUT:
+                    message = "The request to get user location timed out.";
+                    break;
+                case error.UNKNOWN_ERROR:
+                    message = "An unknown error occurred.";
+                    break;
+            }
+            document.getElementById("location-info").innerHTML = message;
+        }
+
         document.getElementById('darkModeToggle').addEventListener('click', function() {
             document.body.classList.toggle('dark-mode');
         });
