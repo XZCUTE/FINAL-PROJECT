@@ -1,8 +1,284 @@
-<canvas id="myCanvas" width="200" height="100" style="border:1px solid #000000;"></canvas>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Activity 10</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .sidebar {
+            width: 250px;
+            background-color: #007BFF;
+            padding: 20px;
+            color: white;
+            height: 100vh;
+            position: fixed;
+            overflow-y: auto;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+        }
+        .sidebar h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .content {
+            margin-left: 280px;
+            padding: 20px;
+            width: calc(100% - 280px);
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .tab {
+            display: none;
+        }
+        .active {
+            display: block;
+        }
+        .nav a {
+            display: block;
+            padding: 10px;
+            background: #0056b3;
+            color: white;
+            text-decoration: none;
+            margin: 5px 0;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        .nav a:hover {
+            background: #004494;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin: 20px 0;
+        }
+        .question {
+            margin-bottom: 15px;
+            padding: 10px;
+            background: #f9f9f9;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        .question p {
+            margin: 0 0 10px;
+        }
+        label {
+            display: block;
+            margin: 5px 0;
+        }
+        button {
+            background: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 15px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+      
+        body.dark-mode {
+            background-color: #121212;
+            color: #e0e0e0;
+        }
+        body.dark-mode .content {
+            background-color: #1e1e1e;
+            color: #f1f1f1;
+        }
+        body.dark-mode .sidebar {
+            background-color: #333333;
+        }
+        body.dark-mode .nav a {
+            background: #0056b3;
+            color: #fff;
+        }
+        body.dark-mode h1 {
+            color: #007BFF; 
+        }
+        body.dark-mode .question {
+            background: #2a2a2a; 
+            color: #e0e0e0; 
+        }
+        .correct {
+            color: green;
+        }
+  
+    </style>
+</head>
+<body>
+    <button id="darkModeToggle" style="position: fixed; top: 20px; right: 20px; background: #007BFF; color: #fff; border: none; border-radius: 4px; padding: 10px; cursor: pointer; z-index: 1000;">Dark Mode</button>
+    
+    <div class="sidebar">
+        <h2>Navigation</h2>
+        <div class="nav">
+            <a href="#quiz" onclick="showTab('quiz')">Quiz</a>
+            <a href="#correct-answers" onclick="showTab('correct-answers')">Correct Answers</a>
+        </div>
+    </div>
 
-<script>
-  const canvas = document.getElementById('myCanvas');
-  const ctx = canvas.getContext('2d');
-  ctx.fillStyle = '#FF0000';
-  ctx.fillRect(50, 25, 100, 50);
-</script>
+    <div class="content">
+        <h1>Activity 10</h1>
+        
+        <div id="quiz" class="tab active">
+            <form id="quizForm">
+                <div class="question">
+                    <p>1. What type of development covers both client-side and server-side work?</p>
+                    <label><input type="radio" name="q1" value="A"> Front-end development</label>
+                    <label><input type="radio" name="q1" value="B"> Full-stack development</label>
+                    <label><input type="radio" name="q1" value="C"> Back-end development</label>
+                    <label><input type="radio" name="q1" value="D"> Web design</label>
+                </div>
+                <div class="question">
+                    <p>2. What is the primary use of CSS?</p>
+                    <label><input type="radio" name="q2" value="A"> Structuring content</label>
+                    <label><input type="radio" name="q2" value="B"> Adding interactivity</label>
+                    <label><input type="radio" name="q2" value="C"> Styling web pages</label>
+                    <label><input type="radio" name="q2" value="D"> Server communication</label>
+                </div>
+                <div class="question">
+                    <p>3. What is the file extension for an external JavaScript file?</p>
+                    <label><input type="radio" name="q3" value="A"> .css</label>
+                    <label><input type="radio" name="q3" value="B"> .js</label>
+                    <label><input type="radio" name="q3" value="C"> .html</label>
+                    <label><input type="radio" name="q3" value="D"> .php</label>
+                </div>
+                <div class="question">
+                    <p>4. What is a core responsibility of a back-end developer?</p>
+                    <label><input type="radio" name="q4" value="A"> Debugging browser issues</label>
+                    <label><input type="radio" name="q4" value="B"> Managing databases</label>
+                    <label><input type="radio" name="q4" value="C"> Creating animations</label>
+                    <label><input type="radio" name="q4" value="D"> Enhancing user interface</label>
+                </div>
+                <div class="question">
+                    <p>5. What is the primary focus of front-end development?</p>
+                    <label><input type="radio" name="q5" value="A"> Server management</label>
+                    <label><input type="radio" name="q5" value="B"> API creation</label>
+                    <label><input type="radio" name="q5" value="C"> Interactive user experience</label>
+                    <label><input type="radio" name="q5" value="D"> Database configuration</label>
+                </div>
+                <div class="question">
+                    <p>6. What is an advantage of using external JavaScript files?</p>
+                    <label><input type="radio" name="q6" value="A"> Reduced file size</label>
+                    <label><input type="radio" name="q6" value="B"> Easier maintenance</label>
+                    <label><input type="radio" name="q6" value="C"> Improved browser compatibility</label>
+                    <label><input type="radio" name="q6" value="D"> Faster server response</label>
+                </div>
+                <div class="question">
+                    <p>7. Which is not a responsibility of a full-stack developer?</p>
+                    <label><input type="radio" name="q7" value="A"> Managing databases</label>
+                    <label><input type="radio" name="q7" value="B"> Building APIs</label>
+                    <label><input type="radio" name="q7" value="C"> Styling web pages</label>
+                    <label><input type="radio" name="q7" value="D"> Debugging across technologies</label>
+                </div>
+                <div class="question">
+                    <p>8. Who created JavaScript?</p>
+                    <label><input type="radio" name="q8" value="A"> Dennis Ritchie</label>
+                    <label><input type="radio" name="q8" value="B"> Brendan Eich</label>
+                    <label><input type="radio" name="q8" value="C"> Guido van Rossum</label>
+                    <label><input type="radio" name="q8" value="D"> Tim Berners-Lee</label>
+                </div>
+                <div class="question">
+                    <p>9. What is JavaScript primarily used for in web development?</p>
+                    <label><input type="radio" name="q9" value="A"> Creating and editing multimedia content</label>
+                    <label><input type="radio" name="q9" value="B"> Storing and managing data on the server</label>
+                    <label><input type="radio" name="q9" value="C"> Designing web page layouts</label>
+                    <label><input type="radio" name="q9" value="D"> Adding interactive and dynamic behavior to web pages</label>
+                </div>
+                <div class="question">
+                    <p>10. What does back-end development primarily handle?</p>
+                    <label><input type="radio" name="q10" value="A"> User interface</label>
+                    <label><input type="radio" name="q10" value="B"> Visual design</label>
+                    <label><input type="radio" name="q10" value="C"> Animations</label>
+                    <label><input type="radio" name="q10" value="D"> Server-side logic</label>
+                </div>
+                <button type="submit">Submit</button>
+            </form>
+            <div id="result" class="result"></div>
+        </div>
+
+        <div id="correct-answers" class="tab">
+            <h3>Correct Answers</h3>
+            <div class="question">
+                <p>1. What type of development covers both client-side and server-side work? <span class="correct">✅ Full-stack development</span></p>
+            </div>
+            <div class="question">
+                <p>2. What is the primary use of CSS? <span class="correct">✅ Styling web pages</span></p>
+            </div>
+            <div class="question">
+                <p>3. What is the file extension for an external JavaScript file? <span class="correct">✅ .js</span></p>
+            </div>
+            <div class="question">
+                <p>4. What is a core responsibility of a back-end developer? <span class="correct">✅ Managing databases</span></p>
+            </div>
+            <div class="question">
+                <p>5. What is the primary focus of front-end development? <span class="correct">✅ Interactive user experience</span></p>
+            </div>
+            <div class="question">
+                <p>6. What is an advantage of using external JavaScript files? <span class="correct">✅ Easier maintenance</span></p>
+            </div>
+            <div class="question">
+                <p>7. What feature is JavaScript NOT used for? <span class="correct">✅ Database design</span></p>
+            </div>
+            <div class="question">
+                <p>8. Who created JavaScript? <span class="correct">✅ Brendan Eich</span></p>
+            </div>
+            <div class="question">
+                <p>9. What is JavaScript primarily used for in web development? <span class="correct">✅ Adding interactive and dynamic behavior to web pages</span></p>
+            </div>
+            <div class="question">
+                <p>10. What does back-end development primarily handle? <span class="correct">✅ Server-side logic</span></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('darkModeToggle').addEventListener('click', function() {
+            document.body.classList.toggle('dark-mode');
+        });
+
+        document.getElementById('quizForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            let score = 0;
+            const answers = {
+                q1: 'B',
+                q2: 'C',
+                q3: 'C',
+                q4: 'B',
+                q5: 'C',
+                q6: 'B',
+                q7: 'C',
+                q8: 'B',
+                q9: 'D',
+                q10: 'D'
+            };
+            for (let question in answers) {
+                const userAnswer = document.querySelector(`input[name="${question}"]:checked`);
+                if (userAnswer && userAnswer.value === answers[question]) {
+                    score++;
+                }
+            }
+            document.getElementById('result').innerText = `You scored ${score} out of ${Object.keys(answers).length}.`;
+        });
+
+        function showTab(tabName) {
+            const tabs = document.querySelectorAll('.tab');
+            tabs.forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.getElementById(tabName).classList.add('active');
+        }
+    </script>
+</body>
+</html>
