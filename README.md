@@ -17,7 +17,7 @@ This project is a comprehensive overview of web page programming, focusing on Ja
 
 ## Installation Instructions
 1. Clone the repository to your local machine.
-2. Open the `FINAL PROJECT.html` file in a web browser to view the project.
+2. Open the `index.html` file in a web browser to view the project.
 
 ## Usage
 Navigate through the chapters using the sidebar. Each chapter contains links to activities that provide hands-on experience with the concepts discussed.
