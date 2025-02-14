@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Activity 1</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .sidebar {
+            width: 250px;
+            background-color: #007BFF;
+            padding: 20px;
+            color: white;
+            height: 100vh;
+            position: fixed;
+            overflow-y: auto;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+        }
+        .sidebar h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .content {
+            margin-left: 270px;
+            padding: 20px;
+            width: calc(100% - 270px);
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .tab {
+            display: none;
+        }
+        .active {
+            display: block;
+        }
+        .nav a {
+            display: block;
+            padding: 10px;
+            background: #0056b3;
+            color: white;
+            text-decoration: none;
+            margin: 5px 0;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        .nav a:hover {
+            background: #004494;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin: 20px 0;
+        }
+        .question {
+            margin-bottom: 15px;
+            padding: 10px;
+            background: #f9f9f9;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        .question p {
+            margin: 0 0 10px;
+        }
+        label {
+            display: block;
+            margin: 5px 0;
+        }
+        button {
+            background: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 15px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+      
+        body.dark-mode {
+            background-color: #121212;
+            color: #e0e0e0;
+        }
+        body.dark-mode .content {
+            background-color: #1e1e1e;
+            color: #f1f1f1;
+        }
+        body.dark-mode .sidebar {
+            background-color: #1e1e1e;
+        }
+        body.dark-mode .nav a {
+            background: #0056b3;
+            color: #fff;
+        }
+        body.dark-mode h1 {
+            color: #007BFF; 
+        }
+        body.dark-mode .question {
+            background: #2a2a2a; 
+            color: #e0e0e0; 
+        }
+        .correct {
+            color: green;
+        }
+  
+    </style>
+</head>
+<body>
+    <button id="darkModeToggle" style="position: fixed; top: 20px; right: 20px; background: #007BFF; color: #fff; border: none; border-radius: 4px; padding: 10px; cursor: pointer; z-index: 1000;">Toggle Dark Mode</button>
+    
+    <div class="sidebar">
+        <h2>Navigation</h2>
+        <div class="nav">
+            <a href="#quiz" onclick="showTab('quiz')">Quiz</a>
+            <a href="#correct-answers" onclick="showTab('correct-answers')">Correct Answers</a>
+        </div>
+    </div>
+
+    <div class="content">
+        <h1>Activity 1</h1>
+        
+        <div id="quiz" class="tab active">
+            <form id="quizForm">
+                <div class="question">
+                    <p>1. What does HTML stand for?</p>
+                    <label><input type="radio" name="q1" value="A"> Hyper Text Markup Language</label>
+                    <label><input type="radio" name="q1" value="B"> Hyperlinks and Text Markup Language</label>
+                    <label><input type="radio" name="q1" value="C"> High-Level Text Markup Language</label>
+                </div>
+                <div class="question">
+                    <p>2. Which of the following is a style sheet language?</p>
+                    <label><input type="radio" name="q2" value="A"> HTML</label>
+                    <label><input type="radio" name="q2" value="B"> CSS</label>
+                    <label><input type="radio" name="q2" value="C"> JavaScript</label>
+                </div>
+                <div class="question">
+                    <p>3. What does CSS stand for?</p>
+                    <label><input type="radio" name="q3" value="A"> Cascading Style Sheets</label>
+                    <label><input type="radio" name="q3" value="B"> Colorful Style Sheets</label>
+                    <label><input type="radio" name="q3" value="C"> Computer Style Sheets</label>
+                </div>
+                <div class="question">
+                    <p>4. What is the primary focus of Back-End Development?</p>
+                    <label><input type="radio" name="q4" value="A"> User interface</label>
+                    <label><input type="radio" name="q4" value="B"> Managing databases</label>
+                    <label><input type="radio" name="q4" value="C"> Designing layouts</label>
+                </div>
+                <div class="question">
+                    <p>5. Which of the following is a core technology for Front-End Development?</p>
+                    <label><input type="radio" name="q5" value="A"> Python</label>
+                    <label><input type="radio" name="q5" value="B"> CSS</label>
+                    <label><input type="radio" name="q5" value="C"> MySQL</label>
+                </div>
+                <div class="question">
+                    <p>6. What does JavaScript allow developers to do?</p>
+                    <label><input type="radio" name="q6" value="A"> Style web pages</label>
+                    <label><input type="radio" name="q6" value="B"> Create server-side applications</label>
+                    <label><input type="radio" name="q6" value="C"> Add dynamic elements to web pages</label>
+                </div>
+                <div class="question">
+                    <p>7. Which of the following is NOT a server-side language?</p>
+                    <label><input type="radio" name="q7" value="A"> PHP</label>
+                    <label><input type="radio" name="q7" value="B"> Java</label>
+                    <label><input type="radio" name="q7" value="C"> HTML</label>
+                </div>
+                <div class="question">
+                    <p>8. What is the role of APIs in web development?</p>
+                    <label><input type="radio" name="q8" value="A"> To style web pages</label>
+                    <label><input type="radio" name="q8" value="B"> To enable software communication</label>
+                    <label><input type="radio" name="q8" value="C"> To manage databases</label>
+                </div>
+                <div class="question">
+                    <p>9. What does a full-stack developer do?</p>
+                    <label><input type="radio" name="q9" value="A"> Only works on the front-end</label>
+                    <label><input type="radio" name="q9" value="B"> Handles both front-end and back-end development</label>
+                    <label><input type="radio" name="q9" value="C"> Manages server configurations only</label>
+                </div>
+                <div class="question">
+                    <p>10. Which of the following is a benefit of using JavaScript?</p>
+                    <label><input type="radio" name="q10" value="A"> It can only be used for styling</label>
+                    <label><input type="radio" name="q10" value="B"> It enables animations and interactive features</label>
+                    <label><input type="radio" name="q10" value="C"> It is only used for server-side programming</label>
+                </div>
+                <button type="submit">Submit</button>
+            </form>
+            <div id="result" class="result"></div>
+        </div>
+
+        <div id="correct-answers" class="tab">
+            <h3>Correct Answers</h3>
+            <div class="question">
+                <p>1. What does HTML stand for? <span class="correct">✅ Hyper Text Markup Language</span></p>
+            </div>
+            <div class="question">
+                <p>2. Which of the following is a style sheet language? <span class="correct">✅ CSS</span></p>
+            </div>
+            <div class="question">
+                <p>3. What does CSS stand for? <span class="correct">✅ Cascading Style Sheets</span></p>
+            </div>
+            <div class="question">
+                <p>4. What is the primary focus of Back-End Development? <span class="correct">✅ Managing databases</span></p>
+            </div>
+            <div class="question">
+                <p>5. Which of the following is a core technology for Front-End Development? <span class="correct">✅ CSS</span></p>
+            </div>
+            <div class="question">
+                <p>6. What does JavaScript allow developers to do? <span class="correct">✅ Add dynamic elements to web pages</span></p>
+            </div>
+            <div class="question">
+                <p>7. Which of the following is NOT a server-side language? <span class="correct">✅ HTML</span></p>
+            </div>
+            <div class="question">
+                <p>8. What is the role of APIs in web development? <span class="correct">✅ To enable software communication</span></p>
+            </div>
+            <div class="question">
+                <p>9. What does a full-stack developer do? <span class="correct">✅ Handles both front-end and back-end development</span></p>
+            </div>
+            <div class="question">
+                <p>10. Which of the following is a benefit of using JavaScript? <span class="correct">✅ It enables animations and interactive features</span></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('darkModeToggle').addEventListener('click', function() {
+            document.body.classList.toggle('dark-mode');
+        });
+
+        document.getElementById('quizForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            let score = 0;
+            const answers = {
+                q1: 'A',
+                q2: 'B',
+                q3: 'A',
+                q4: 'B',
+                q5: 'B',
+                q6: 'C',
+                q7: 'C',
+                q8: 'B',
+                q9: 'B',
+                q10: 'B'
+            };
+            for (let question in answers) {
+                const userAnswer = document.querySelector(`input[name="${question}"]:checked`);
+                if (userAnswer && userAnswer.value === answers[question]) {
+                    score++;
+                }
+            }
+            document.getElementById('result').innerText = `You scored ${score} out of ${Object.keys(answers).length}.`;
+        });
+
+        function showTab(tabName) {
+            const tabs = document.querySelectorAll('.tab');
+            tabs.forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.getElementById(tabName).classList.add('active');
+        }
+    </script>
+</body>
+</html>

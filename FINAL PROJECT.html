@@ -1,0 +1,1205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Final Project - Web Page Programming</title>
+    <style>
+        body { font-family: Arial, sans-serif; display: flex; }
+        .content { width: 100%; padding: 20px; margin-left: 290px; width: calc(100% - 290px); }
+        .chapter { display: none; }
+        .active { display: block; }
+        .nav { margin-bottom: 20px; }
+        .nav a {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background: #007BFF;
+            color: white;
+            text-decoration: none;
+            margin: 5px 0;
+            box-sizing: border-box;
+            border-radius: 5px;
+        }
+        .nav a:hover { background: #0056b3; }
+        h1 {
+            display: block;
+            background-color: #007BFF;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+            margin: 0 auto 20px;
+        }
+        /* RESPONSIVE FEATURE FOR MOBILE PHONES - STA. ROSA */
+        @media (max-width: 768px) {
+            body { flex-direction: column; }
+            .content { width: 100%; }
+        }
+
+        /* DARK MODE STYLE - STA. ROSA*/
+        body.dark-mode {
+            background-color: #121212;
+            color: #e0e0e0;
+        }
+        body.dark-mode pre,
+        body.dark-mode code {
+            background: #333;
+            color: #fff;
+        }
+
+        /* TERMINAL CONTAINER DOESN'T AFFECTED BY DARK MODE - STA. ROSA*/ 
+        body.dark-mode .terminal-container {
+            background-color: #1e1e1e !important;
+            color: #0056b3 !important;
+        }
+        body.dark-mode .terminal-container .terminal-header {
+            background-color: #333 !important;
+            color: #fff !important;
+        }
+        body.dark-mode .terminal-container pre,
+        body.dark-mode .terminal-container code {
+            background: none !important;
+            color: inherit !important;
+        }
+
+        /* TERMINAL CONTAINER DESIGN - STA. ROSA */
+        .terminal-container {
+            background-color: #1e1e1e;
+            color: #0858b3;
+            font-family: 'Source Code Pro', Consolas, 'Courier New', monospace;
+            padding: 5px;
+            border-radius: 3px;
+            border: 1px solid #333;
+            outline: 1px solid #fff;
+            overflow-x: auto;
+            font-size: 1rem;
+            margin: 0.3rem 0;
+        }
+
+        /* REMOVE EXTRA BACKGROUNDS/PADDING FROM INDIVIDUAL CODE BLOCK ELEMENTS INSIDE THE CONTAINER - STA. ROSA */
+        .terminal-container pre,
+        .terminal-container code {
+            background: none;
+            padding: 0;
+            margin: 0;
+            display: block;
+        }
+
+        /* TERMINAL HEADER DESIGN - STA. ROSA */
+        .terminal-container .terminal-header {
+            background-color: #333333;
+            color: #fff;
+            font-size: 0.9rem;
+            font-weight: bold;
+            padding: 4px 10px;
+            border-top-left-radius: 3px;
+            border-top-right-radius: 3px;
+            margin: -5px -5px 5px -5px;
+        }
+
+        /* SIDEBAR STYLE - STA. ROSA */
+        .sidebar {
+            width: 250px;
+            padding: 20px;
+            background-color: #ffffff;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            overflow-y: auto;
+        }
+        .content {
+            margin-left: 270px;
+            width: calc(100% - 270px);
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        /* DARK MODE STYLE - STA. ROSA */
+        body.dark-mode .content {
+            background-color: #1e1e1e;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+            color: #f1f1f1;
+        }
+  
+        body.dark-mode .sidebar {
+            background-color: #333;
+            color: #fff;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.5);
+        }
+        body.dark-mode .sidebar a {
+            background: #007BFF;
+            color: #fff;
+        }
+        body.dark-mode .sidebar-footer {
+            color: #ccc;
+        }
+        body.dark-mode #darkModeToggle {
+            background: transparent !important;
+            border: 1px solid #fff;
+            color: #fff;
+        }
+        .authors {
+            text-align: center;
+            font-size: 0.85rem;
+            margin-bottom: 10px;
+            color: inherit;
+        }
+        .sidebar h2 {
+            text-align: center;
+        }
+        /* SLAB SERIFF FONT FOR ACTIVITY BUTTONS - STA. ROSA */
+        .chapter a[style*="#0056b3"] {
+            font-family: 'Roboto Slab', serif !important;
+        }
+        /* SMOOTH HOVER EFFECTS FOR NAV LINKS - STA. ROSA */
+        .nav a, .chapter a {
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .nav a:hover, .chapter a:hover {
+            background-color: #0056b3; 
+            color: #fff; 
+        }
+
+        /* RESPONSIVE FEATURE FOR MOBILE PHONES - STA. ROSA */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+            }
+            .content {
+                margin-left: 0;
+                width: 100%;
+            }
+        }
+
+        /* DARK MODE HOVER EFFECTS - STA. ROSA */
+        body.dark-mode .nav a:hover {
+            background-color: #0056b3; 
+            color: #fff; 
+        }
+    </style>
+</head>
+<body>
+    <button id="darkModeToggle" style="position: fixed; top: 20px; right: 20px; background: #007BFF; color: #fff; border: none; border-radius: 4px; padding: 10px; cursor: pointer; z-index: 1000;">Dark Mode</button>
+    <div class="sidebar">
+        <h2>CHAPTERS</h2>
+        <div class="nav">
+            <a onclick="showChapter(1)">Chapter 1 - Introduction to Web Page Programming: A Comprehensive Overview</a>
+            <a onclick="showChapter(2)">Chapter 2 - Understanding JavaScript Data Types and Operators</a>
+            <a onclick="showChapter(3)">Chapter 3 - Understanding Logical Statements in JavaScript</a>
+            <a onclick="showChapter(4)">Chapter 4 - Mastering Loops and Arrays in JavaScript</a>
+            <a onclick="showChapter(5)">Chapter 5 - Understanding JavaScript Functions</a>
+            <a onclick="showChapter(6)">Chapter 6 - Exploring Built-in JavaScript Methods</a>
+            <a onclick="showChapter(7)">Chapter 7 - Understanding the Document Object Model (DOM)</a>
+            <a onclick="showChapter(8)">Chapter 8 - Interactive Web Content and Event Listeners</a>
+            <a onclick="showChapter(9)">Chapter 9 - Intermediate JavaScript: Advanced Concepts and Techniques</a>
+            <a onclick="showChapter(10)">Chapter 10 - Enhancing Web Applications with HTML5, Canvas, and JavaScript</a>
+        </div>
+    </div>
+    <div class="content">
+        <p class="authors">Mark Joshua Kylee P. Sta. Rosa &amp; Justine Paul P. Tañada</p>
+        <h1>Final Project for Web Page Programming</h1>
+        <div id="chapter1" class="chapter active">
+            <h3>Introduction to Web Page Programming: A Comprehensive Overview</h3>
+            <h4>What is Web Development?</h4>
+            <p>Web development involves creating websites and web applications, categorized into:</p>
+            <ul>
+                <li><strong>Front-End Development (Client-Side)</strong> – Focuses on user interface and experience.</li>
+                <li><strong>Back-End Development (Server-Side)</strong> – Manages databases, logic, and server operations.</li>
+            </ul>
+
+            <h4>Front-End Development</h4>
+            <p><strong>Key Responsibilities:</strong></p>
+            <ul>
+                <li>Designing web page layouts.</li>
+                <li>Implementing responsive designs.</li>
+                <li>Enhancing user interactivity.</li>
+            </ul>
+            <p><strong>Core Technologies:</strong></p>
+            <ul>
+                <li><strong>HTML</strong> – Structures web content.</li>
+                <li><strong>CSS</strong> – Styles web elements.</li>
+                <li><strong>JavaScript</strong> – Enables interactivity.</li>
+            </ul>
+
+            <h4>Back-End Development</h4>
+            <p><strong>Key Responsibilities:</strong></p>
+            <ul>
+                <li>Managing databases.</li>
+                <li>Configuring servers.</li>
+                <li>Implementing APIs.</li>
+            </ul>
+            <p><strong>Core Technologies:</strong></p>
+            <ul>
+                <li><strong>Server-Side Languages</strong> – Python, PHP, Java, Node.js.</li>
+                <li><strong>Databases</strong> – MySQL, PostgreSQL, MongoDB.</li>
+                <li><strong>APIs</strong> – Enables software communication.</li>
+            </ul>
+
+            <h4>Full-Stack Development</h4>
+            <p>A full-stack developer handles both front-end and back-end development, ensuring smooth integration and debugging.</p>
+
+            <h4>Introduction to JavaScript</h4>
+            <p>JavaScript enhances web pages by allowing dynamic and interactive elements.</p>
+            <p><strong>Why Use JavaScript?</strong></p>
+            <ul>
+                <li><strong>Manipulate document elements</strong> – Modify content dynamically.</li>
+                <li><strong>Form validation</strong> – Prevents invalid submissions.</li>
+                <li><strong>Browser interactions</strong> – Detects and adapts to user environments.</li>
+                <li><strong>Cookies management</strong> – Stores user preferences.</li>
+                <li><strong>Interactive features</strong> – Enables animations and mini-games.</li>
+            </ul>
+
+            <h4>Adding JavaScript to a Web Page</h4>
+            <ol>
+                <li><strong>Inline JavaScript</strong> – Placed within <code>&lt;script&gt;</code> tags inside an HTML file.</li>
+                <li><strong>External JavaScript</strong> – Linked via a separate <code>.js</code> file for better code organization.</li>
+            </ol>
+
+            <p>By mastering HTML, CSS, and JavaScript, developers can create functional, interactive, and user-friendly web pages.</p>
+            <p style="text-align:center; margin-top:20px;">
+                <a href="ACTIVITY1.html" target="_blank" style="background:#0056b3; color:#fff; padding:10px 20px; text-decoration:none; font-weight:bold; border-radius:5px;">ACTIVITY</a>
+            </p>
+        </div>
+        <div id="chapter2" class="chapter">
+            <h3>Understanding JavaScript Data Types and Operators</h3>
+            
+            <h4>Undefined vs. Null</h4>
+            <ul>
+                <li><strong>Undefined</strong>: A variable that has not been assigned a value.</li>
+                <li><strong>Null</strong>: Represents an empty or unknown value, preventing equality issues with <code>undefined</code>.</li>
+            </ul>
+            
+            <h4>Analyzing Data Types</h4>
+            <ul>
+                <li>JavaScript provides built-in methods like <code>console.log()</code> to handle data types.</li>
+                <li>The <code>typeof</code> operator helps determine a variable's data type.</li>
+            </ul>
+            
+            <h4>Converting Data Types</h4>
+            <ul>
+                <li>JavaScript can change variable types automatically.</li>
+                <li>Explicit conversion methods:
+                    <ul>
+                        <li><strong>String()</strong> – Converts values to strings.</li>
+                        <li><strong>Number()</strong> – Converts values to numbers.</li>
+                        <li><strong>Boolean()</strong> – Converts values to boolean (<code>true</code> or <code>false</code>).</li>
+                    </ul>
+                </li>
+            </ul>
+            
+            <h4>Operators in JavaScript</h4>
+            
+            <h5>Arithmetic Operators</h5>
+            <p>Used for mathematical calculations:</p>
+            <ul>
+                <li><code>+</code> (Addition), <code>-</code> (Subtraction), <code>*</code> (Multiplication), <code>/</code> (Division)</li>
+                <li><code>%</code> (Modulus), <code>++</code> (Increment), <code>--</code> (Decrement)</li>
+            </ul>
+            
+            <h5>Comparison Operators</h5>
+            <p>Compare two values and return <code>true</code> or <code>false</code>:</p>
+            <ul>
+                <li><code>==</code> (Equal), <code>===</code> (Strict equal)</li>
+                <li><code>!=</code> (Not equal), <code>!==</code> (Strict not equal)</li>
+                <li><code>&gt;</code>, <code>&gt;=</code>, <code>&lt;</code>, <code>&lt;=</code> (Greater/Less than checks)</li>
+            </ul>
+            
+            <h5>Logical Operators</h5>
+            <p>Combine boolean values:</p>
+            <ul>
+                <li><code>&amp;&amp;</code> (AND) – Both conditions must be true.</li>
+                <li><code>||</code> (OR) – At least one condition must be true.</li>
+                <li><code>!</code> (NOT) – Inverts the condition.</li>
+            </ul>
+            
+            <h5>Assignment Operators</h5>
+            <p>Used to assign values to variables:</p>
+            <ul>
+                <li><code>=</code> (Assignment)</li>
+                <li><code>+=</code>, <code>-=</code>, <code>*=</code>, <code>/=</code>, <code>%=</code> (Perform operations and assign results)</li>
+            </ul>
+            
+            <p>Understanding these fundamental concepts is crucial for efficient JavaScript programming and web development.</p>
+            <p style="text-align:center; margin-top:20px;">
+                <a href="ACTIVITY2.html" target="_blank" style="background:#0056b3; color:#fff; padding:10px 20px; text-decoration:none; font-weight:bold; border-radius:5px;">ACTIVITY</a>
+            </p>
+        </div>
+        <div id="chapter3" class="chapter">
+            <h3>Understanding Logical Statements in JavaScript</h3>
+            <p>Logical statements are essential in programming as they allow developers to control the flow of execution based on specific conditions. JavaScript provides several ways to implement conditional logic efficiently.</p>
+            <hr>
+            <h3>Types of Logical Statements in JavaScript</h3>
+            <h4>1. If, Else If, and Else Statements</h4>
+            <ul>
+                <li>The <code>if</code> statement executes a block of code only if a specified condition is true.</li>
+                <li>The <code>else</code> statement provides an alternative execution path when the condition is false.</li>
+                <li>The <code>else if</code> statement allows checking multiple conditions in sequence.</li>
+            </ul>
+            <h4>2. Common Mistakes with If Statements</h4>
+            <ul>
+                <li>Using <code>=</code> (assignment operator) instead of <code>==</code> (equality operator).</li>
+                <li>Example of incorrect usage:</li>
+            </ul>
+            <div class="terminal-container">
+                <div class="terminal-header">CONSOLE</div>
+                <pre><code class="language-javascript">
+let hobby = "coding";
+if (hobby = "music") {  // Incorrect: assignment instead of comparison
+    console.log("You like music!");
+}
+                </code></pre>
+            </div>
+            <ul>
+                <li>Correct usage:</li>
+            </ul>
+            <div class="terminal-container">
+                <div class="terminal-header">CONSOLE</div>
+                <pre><code class="language-javascript">
+if (hobby == "music") {  
+    console.log("You like music!");
+}
+                </code></pre>
+            </div>
+            <h4>3. Else If Statements</h4>
+            <p>Used when multiple conditions need to be checked. Only the first true condition executes, preventing unnecessary evaluations.</p>
+            <p>Example:</p>
+            <div class="terminal-container">
+                <div class="terminal-header">CONSOLE</div>
+                <pre><code class="language-javascript">
+let grade = 85;
+if (grade >= 90) {
+    console.log("Excellent!");
+} else if (grade >= 75) {
+    console.log("Good job!");
+} else {
+    console.log("Keep improving!");
+}
+                </code></pre>
+            </div>
+            <hr>
+            <h3>4. Conditional (Ternary) Operator</h3>
+            <ul>
+                <li>A shorthand for simple <code>if-else</code> conditions.</li>
+                <li>Syntax: <code>condition ? expression_if_true : expression_if_false;</code></li>
+                <li>Example:</li>
+            </ul>
+            <div class="terminal-container">
+                <div class="terminal-header">CONSOLE</div>
+                <pre><code class="language-javascript">
+let age = 17;
+let access = age < 18 ? "Denied" : "Allowed";
+console.log(access); // Output: Denied
+                </code></pre>
+            </div>
+            <p>Best for short, simple conditions to improve readability.</p>
+            <hr>
+            <h3>5. Switch Statements</h3>
+            <ul>
+                <li>Used for evaluating multiple possible values of a variable.</li>
+                <li>More readable and efficient than multiple <code>if-else</code> statements.</li>
+                <li>Example:</li>
+            </ul>
+            <div class="terminal-container">
+                <div class="terminal-header">CONSOLE</div>
+                <pre><code class="language-javascript">
+let day = "Monday";
+switch (day) {
+    case "Monday":
+        console.log("Start of the workweek.");
+        break;
+    case "Friday":
+        console.log("Weekend is near!");
+        break;
+    case "Sunday":
+        console.log("Relax and recharge.");
+        break;
+    default:
+        console.log("It's a regular day.");
+}
+                </code></pre>
+            </div>
+            <hr>
+            <h3>Conclusion</h3>
+            <p>Understanding logical statements in JavaScript is crucial for writing efficient and dynamic programs. Whether using <code>if-else</code>, the ternary operator, or <code>switch</code>, choosing the right control structure enhances code clarity and performance. 🚀</p>
+            <p style="text-align:center; margin-top:20px;">
+                <a href="ACTIVITY3.html" target="_blank" style="background:#0056b3; color:#fff; padding:10px 20px; text-decoration:none; font-weight:bold; border-radius:5px;">ACTIVITY</a>
+            </p>
+        </div>
+        <div id="chapter4" class="chapter">
+            <h3>Mastering Loops and Arrays in JavaScript</h3>
+            <p>Loops are a powerful tool in JavaScript that allow programmers to execute a block of code multiple times efficiently. This chapter covers different types of loops and their applications in handling arrays and objects.</p>
+            <hr>
+            <h3>Types of Loops in JavaScript</h3>
+            <h4>1. While Loop</h4>
+            <ul>
+                <li>Repeats a block of code as long as a specified condition is true.</li>
+                <li>Condition is checked before each iteration.</li>
+            </ul>
+            <p>Example:</p>
+            <div class="terminal-container">
+                <div class="terminal-header">CONSOLE</div>
+                <pre><code class="language-javascript">
+let i = 0;
+while (i < 5) {
+    console.log(i);
+    i++;
+}
+                </code></pre>
+            </div>
+            <p>✔ Useful for scenarios where the number of iterations is unknown beforehand.</p>
+            <h4>2. Do While Loop</h4>
+            <ul>
+                <li>Executes the block of code at least once before checking the condition.</li>
+            </ul>
+            <p>Example:</p>
+            <div class="terminal-container">
+                <div class="terminal-header">CONSOLE</div>
+                <pre><code class="language-javascript">
+let i = 0;
+do {
+    console.log(i);
+    i++;
+} while (i < 5);
+                </code></pre>
+            </div>
+            <p>✔ Ensures the loop runs at least once, even if the condition is false.</p>
+            <h4>3. For Loop</h4>
+            <ul>
+                <li>Best suited for cases where the number of iterations is known.</li>
+                <li>Includes initialization, condition, and increment/decrement in one line.</li>
+            </ul>
+            <p>Example:</p>
+            <div class="terminal-container">
+                <div class="terminal-header">CONSOLE</div>
+                <pre><code class="language-javascript">
+for (let i = 0; i < 5; i++) {
+    console.log(i);
+}
+                </code></pre>
+            </div>
+            <p>✔ Efficient and commonly used in array manipulations.</p>
+            <hr>
+            <h3>Working with Arrays Using Loops</h3>
+            <h4>1. Finding a Value in an Array Using While Loop</h4>
+            <p>Example:</p>
+            <div class="terminal-container">
+                <div class="terminal-header">CONSOLE</div>
+                <pre><code class="language-javascript">
+let numbers = [10, 20, 30, 40, 50];
+let i = 0;
+while (i < numbers.length) {
+    if (numbers[i] === 30) {
+        console.log("Value found!");
+        break;
+    }
+    i++;
+}
+                </code></pre>
+            </div>
+            <p>✔ Helps search elements dynamically.</p>
+            <h4>2. Creating Arrays with a For Loop</h4>
+            <p>Example:</p>
+            <div class="terminal-container">
+                <div class="terminal-header">CONSOLE</div>
+                <pre><code class="language-javascript">
+let evenNumbers = [];
+for (let i = 2; i <= 10; i += 2) {
+    evenNumbers.push(i);
+}
+console.log(evenNumbers); // Output: [2, 4, 6, 8, 10]
+                </code></pre>
+            </div>
+            <p>✔ Great for generating sequences programmatically.</p>
+            <h4>3. Nested Loops</h4>
+            <ul>
+                <li>A loop inside another loop, useful for multi-dimensional structures.</li>
+            </ul>
+            <p>Example:</p>
+            <div class="terminal-container">
+                <div class="terminal-header">CONSOLE</div>
+                <pre><code class="language-javascript">
+for (let i = 1; i <= 3; i++) {
+    for (let j = 1; j <= 3; j++) {
+        console.log(`i=${i}, j=${j}`);
+    }
+}
+                </code></pre>
+            </div>
+            <p>✔ Useful for working with tables and matrices.</p>
+            <hr>
+            <h3>Looping Through Objects</h3>
+            <h4>1. For-In Loop (Iterating Over Object Properties)</h4>
+            <p>Example:</p>
+            <div class="terminal-container">
+                <div class="terminal-header">CONSOLE</div>
+                <pre><code class="language-javascript">
+let person = { name: "Alice", age: 25, city: "New York" };
+for (let key in person) {
+    console.log(`${key}: ${person[key]}`);
+}
+                </code></pre>
+            </div>
+            <p>✔ Best suited for iterating over object properties.</p>
+            <h4>2. Converting Objects to Arrays for Iteration</h4>
+            <p>Convert keys to an array:</p>
+            <div class="terminal-container">
+                <div class="terminal-header">CONSOLE</div>
+                <pre><code class="language-javascript">
+let keys = Object.keys(person);
+console.log(keys); // Output: ["name", "age", "city"]
+                </code></pre>
+            </div>
+            <p>Convert values to an array:</p>
+            <div class="terminal-container">
+                <div class="terminal-header">CONSOLE</div>
+                <pre><code class="language-javascript">
+let values = Object.values(person);
+console.log(values); // Output: ["Alice", 25, "New York"]
+                </code></pre>
+            </div>
+            <p>Convert entries to an array:</p>
+            <div class="terminal-container">
+                <div class="terminal-header">CONSOLE</div>
+                <pre><code class="language-javascript">
+let entries = Object.entries(person);
+console.log(entries); // Output: [["name", "Alice"], ["age", 25], ["city", "New York"]]
+                </code></pre>
+            </div>
+            <p>✔ Provides flexibility in iterating through object data.</p>
+            <hr>
+            <h3>Conclusion</h3>
+            <p>Loops are an essential part of JavaScript that help in handling arrays and objects efficiently. Understanding when to use different types of loops can significantly improve the readability and performance of your code. Mastering loops allows developers to automate repetitive tasks and handle complex data structures with ease. 🚀</p>
+            <p style="text-align:center; margin-top:20px;">
+                <a href="ACTIVITY4.html" target="_blank" style="background:#0056b3; color:#fff; padding:10px 20px; text-decoration:none; font-weight:bold; border-radius:5px;">ACTIVITY</a>
+            </p>
+        </div>
+        <div id="chapter5" class="chapter">
+            <h3>Understanding JavaScript Functions</h3>
+            <p>Functions are one of the fundamental building blocks of JavaScript, allowing developers to write reusable, modular, and efficient code. This chapter explores function syntax, calling functions, returning values, using arguments, and integrating functions into HTML for dynamic web pages.</p>
+            <hr>
+            <h3>Key Concepts of JavaScript Functions</h3>
+            <h4>1. What Are Functions?</h4>
+            <ul>
+                <li>Functions are blocks of code designed to perform a specific task.</li>
+                <li>They are defined using the <code>function</code> keyword and executed when called.</li>
+            </ul>
+            <p><strong>Basic Syntax:</strong></p>
+            <div class="terminal-container">
+                <div class="terminal-header">CONSOLE</div>
+                <pre><code class="language-javascript">
+function greet() {
+    console.log("Hello, world!");
+}
+greet(); // Calls the function
+                </code></pre>
+            </div>
+            <p>✔ Helps organize and structure code for better readability.</p>
+            <hr>
+            <h4>2. Integrating Functions in HTML</h4>
+            <ul>
+                <li>Functions can be triggered using HTML events like <code>onLoad</code>, <code>onClick</code>, etc.</li>
+            </ul>
+            <p><strong>Example:</strong></p>
+            <div class="terminal-container">
+                <div class="terminal-header">CONSOLE</div>
+                <pre><code class="language-html">
+&lt;button onclick="sayHello()"&gt;Click Me&lt;/button&gt;
+
+&lt;script&gt;
+function sayHello() {
+    alert("Hello, User!");
+}
+&lt;/script&gt;
+                </code></pre>
+            </div>
+            <p>✔ Enhances interactivity in web applications.</p>
+            <hr>
+            <h4>3. Functions Calling Other Functions</h4>
+            <ul>
+                <li>A function can invoke another function within its body.</li>
+            </ul>
+            <p><strong>Example:</strong></p>
+            <div class="terminal-container">
+                <div class="terminal-header">CONSOLE</div>
+                <pre><code class="language-javascript">
+function firstFunction() {
+    console.log("Calling second function...");
+    secondFunction();
+}
+
+function secondFunction() {
+    console.log("Hello from second function!");
+}
+
+firstFunction();
+                </code></pre>
+            </div>
+            <p>✔ Helps break down complex logic into smaller, manageable parts.</p>
+            <hr>
+            <h4>4. Returning Values from Functions</h4>
+            <ul>
+                <li>Functions can return values using the <code>return</code> keyword.</li>
+                <li>Returned values can be stored in variables or used in expressions.</li>
+            </ul>
+            <p><strong>Example:</strong></p>
+            <div class="terminal-container">
+                <div class="terminal-header">CONSOLE</div>
+                <pre><code class="language-javascript">
+function add(a, b) {
+    return a + b;
+}
+
+let sum = add(5, 3);
+console.log(sum); // Output: 8
+                </code></pre>
+            </div>
+            <p>✔ Useful for calculations, data manipulation, and dynamic operations.</p>
+            <hr>
+            <h4>5. Function Arguments</h4>
+            <ul>
+                <li>Functions can accept parameters to work with different inputs.</li>
+                <li>Multiple arguments are separated by commas.</li>
+            </ul>
+            <p><strong>Example:</strong></p>
+            <div class="terminal-container">
+                <div class="terminal-header">CONSOLE</div>
+                <pre><code class="language-javascript">
+function greetUser(name, age) {
+    console.log(`Hello, ${name}! You are ${age} years old.`);
+}
+
+greetUser("Alice", 25);
+                </code></pre>
+            </div>
+            <p>✔ Increases function flexibility and reusability.</p>
+            <hr>
+            <h3>Conclusion</h3>
+            <p>JavaScript functions are essential for writing efficient and modular code. They allow developers to break down tasks, reuse logic, and enhance web page interactivity. Mastering functions is key to writing scalable and maintainable JavaScript applications. 🚀</p>
+            <p style="text-align:center; margin-top:20px;">
+                <a href="ACTIVITY5.html" target="_blank" style="background:#0056b3; color:#fff; padding:10px 20px; text-decoration:none; font-weight:bold; border-radius:5px;">ACTIVITY</a>
+            </p>
+        </div>
+        <div id="chapter6" class="chapter">
+            <h3>Exploring Built-in JavaScript Methods</h3>
+            <p>JavaScript provides a wide range of built-in methods that simplify common programming tasks. These predefined functions help developers manipulate strings, arrays, numbers, and even execute dynamic JavaScript code efficiently. This chapter explores global methods, URI encoding/decoding, number parsing, and security concerns with <code>eval()</code>.</p>
+            <hr>
+            <h3>Key JavaScript Built-in Methods</h3>
+            <h4>1. What Are Built-in Methods?</h4>
+            <ul>
+                <li>Functions that come with JavaScript, ready to use.</li>
+                <li>Examples: <code>console.log()</code>, <code>Math.random()</code>, <code>prompt()</code>, etc.</li>
+                <li><strong>Methods vs. Functions:</strong>
+                    <ul>
+                        <li><strong>Functions</strong> are standalone blocks of code.</li>
+                        <li><strong>Methods</strong> are functions attached to objects or classes.</li>
+                    </ul>
+                </li>
+            </ul>
+            <p>✔ Example of <strong>Method Chaining</strong>:</p>
+            <div class="terminal-container">
+                <div class="terminal-header">CONSOLE</div>
+                <pre><code class="language-javascript">
+let text = "Hello World";
+console.log(text.toLowerCase().replace("hello", "Hi"));
+                </code></pre>
+            </div>
+            <hr>
+            <h4>2. Global JavaScript Methods</h4>
+            <ul>
+                <li>Can be used anywhere without referencing an object.</li>
+                <li>Common global methods:
+                    <ul>
+                        <li><code>isNaN()</code> – Checks if a value is <strong>Not a Number</strong>.</li>
+                        <li><code>parseInt()</code> – Converts a string into an <strong>integer</strong>.</li>
+                        <li><code>parseFloat()</code> – Converts a string into a <strong>decimal</strong> number.</li>
+                    </ul>
+                </li>
+            </ul>
+            <p>✔ Example:</p>
+            <div class="terminal-container">
+                <div class="terminal-header">CONSOLE</div>
+                <pre><code class="language-javascript">
+console.log(parseInt("42px")); // Output: 42
+console.log(parseFloat("3.14")); // Output: 3.14
+                </code></pre>
+            </div>
+            <hr>
+            <h4>3. Encoding &amp; Decoding URIs</h4>
+            <ul>
+                <li>Used to encode special characters in URLs.</li>
+                <li><code>encodeURI()</code> &amp; <code>decodeURI()</code> handle complete URLs.</li>
+                <li><code>encodeURIComponent()</code> &amp; <code>decodeURIComponent()</code> handle URL parameters.</li>
+            </ul>
+            <p>✔ Example:</p>
+            <div class="terminal-container">
+                <div class="terminal-header">CONSOLE</div>
+                <pre><code class="language-javascript">
+let url = "https://example.com?name=John Doe";
+let encodedURL = encodeURI(url);
+console.log(encodedURL); // Encodes spaces and special characters
+                </code></pre>
+            </div>
+            <hr>
+            <h4>4. Executing JavaScript with <code>eval()</code></h4>
+            <ul>
+                <li><code>eval()</code> executes JavaScript code stored as a string.</li>
+                <li>⚠ <strong>Security Risk</strong>: Can allow code injection attacks.</li>
+            </ul>
+            <p>✔ Example (Avoid using <code>eval()</code> in production):</p>
+            <div class="terminal-container">
+                <div class="terminal-header">CONSOLE</div>
+                <pre><code class="language-javascript">
+let x = 10;
+let code = "x * 2";
+console.log(eval(code)); // Output: 20
+                </code></pre>
+            </div>
+            <p>🚨 <strong>Never use <code>eval()</code> for user-generated inputs!</strong></p>
+            <hr>
+            <h4>5. Array Methods</h4>
+            <ul>
+                <li><code>forEach()</code> – Executes a function for each element.</li>
+                <li><code>map()</code> – Creates a new array with transformed values.</li>
+                <li><code>every()</code> – Checks if all elements meet a condition.</li>
+                <li><code>copyWithin()</code> – Copies part of an array within itself.</li>
+                <li><code>lastIndexOf()</code> – Finds the last occurrence of an element.</li>
+            </ul>
+            <p>✔ Example of <code>map()</code>:</p>
+            <div class="terminal-container">
+                <div class="terminal-header">CONSOLE</div>
+                <pre><code class="language-javascript">
+let numbers = [1, 2, 3, 4];
+let doubled = numbers.map(num => num * 2);
+console.log(doubled); // Output: [2, 4, 6, 8]
+                </code></pre>
+            </div>
+            <hr>
+            <h4>6. String Methods</h4>
+            <ul>
+                <li><code>concat()</code> – Joins two or more strings.</li>
+                <li><code>split()</code> – Converts a string into an array.</li>
+                <li><code>join()</code> – Converts an array into a string.</li>
+                <li><code>indexOf()</code> &amp; <code>lastIndexOf()</code> – Finds the position of a substring.</li>
+            </ul>
+            <p>✔ Example:</p>
+            <div class="terminal-container">
+                <div class="terminal-header">CONSOLE</div>
+                <pre><code class="language-javascript">
+let sentence = "Hello, JavaScript!";
+console.log(sentence.split(" ")); // Output: ["Hello,", "JavaScript!"]
+                </code></pre>
+            </div>
+            <hr>
+            <h3>Conclusion</h3>
+            <p>Built-in JavaScript methods simplify coding by providing pre-defined solutions for common tasks. Mastering these methods can enhance productivity and make code more efficient. 🚀</p>
+            <p style="text-align:center; margin-top:20px;">
+                <a href="ACTIVITY6.html" target="_blank" style="background:#0056b3; color:#fff; padding:10px 20px; text-decoration:none; font-weight:bold; border-radius:5px;">ACTIVITY</a>
+            </p>
+        </div>
+        <div id="chapter7" class="chapter">
+            <h3>Understanding the Document Object Model (DOM)</h3>
+            <p>The <strong>Document Object Model (DOM)</strong> is essential for JavaScript developers working with web pages. It transforms an <strong>HTML document</strong> into a <strong>tree structure</strong>, allowing dynamic interactions. This chapter explores <strong>HTML fundamentals</strong>, the <strong>Browser Object Model (BOM)</strong>, and <strong>DOM manipulation techniques</strong>.</p>
+            <hr>
+            <h3>1. HTML Basics</h3>
+            <p>HTML (HyperText Markup Language) is the backbone of web pages. Browsers interpret HTML to render content.</p>
+            <h4>Major HTML Elements:</h4>
+            <ul>
+                <li><code>&lt;html&gt;</code> – The root element of an HTML document.</li>
+                <li><code>&lt;head&gt;</code> – Contains metadata, stylesheets, and scripts.</li>
+                <li><code>&lt;body&gt;</code> – Displays visible content.</li>
+            </ul>
+            <h4>Common HTML Tags:</h4>
+            <ul>
+                <li><code>&lt;p&gt;</code> – Paragraph</li>
+                <li><code>&lt;h1&gt;</code> to <code>&lt;h6&gt;</code> – Headings</li>
+                <li><code>&lt;a&gt;</code> – Hyperlink</li>
+                <li><code>&lt;button&gt;</code> – Clickable button</li>
+                <li><code>&lt;table&gt;</code> – Creates a table structure</li>
+                <li><code>&lt;div&gt;</code> – Defines a section</li>
+                <li><code>&lt;form&gt;</code> – Handles user input</li>
+            </ul>
+            <hr>
+            <h3>2. Browser Object Model (BOM)</h3>
+            <p>The <strong>BOM</strong> provides access to browser-specific properties and functions.</p>
+            <h4>Key BOM Objects:</h4>
+            <ul>
+                <li><code>window</code> – The top-level object of the browser.</li>
+                <li><code>history</code> – Tracks visited pages.</li>
+                <li><code>navigator</code> – Provides browser details.</li>
+                <li><code>location</code> – Handles URLs and navigation.</li>
+            </ul>
+            <h4>Inspecting BOM Using Developer Tools:</h4>
+            <ol>
+                <li>Press <strong>F12</strong> or right-click → "Inspect".</li>
+                <li>Navigate to the <strong>Console tab</strong>.</li>
+                <li>Use <code>console.dir(window)</code> to explore available properties.</li>
+            </ol>
+            <p>✔ <strong>Example – Accessing Browser History Length:</strong></p>
+            <div class="terminal-container">
+                <div class="terminal-header">CONSOLE</div>
+                <pre><code class="language-javascript">
+console.log(history.length); // Number of visited pages
+                </code></pre>
+            </div>
+            <hr>
+            <h3>3. Understanding the DOM Structure</h3>
+            <p>The <strong>DOM</strong> represents an HTML document as a <strong>logical tree</strong>, allowing JavaScript to modify elements dynamically.</p>
+            <h4>DOM Tree Example:</h4>
+            <div class="terminal-container">
+                <div class="terminal-header">CONSOLE</div>
+                <pre><code>
+&lt;html&gt;
+ ├── &lt;head&gt;
+ └── &lt;body&gt;
+      ├── &lt;div&gt;
+      ├── &lt;p&gt;
+      └── &lt;button&gt;
+            </code></pre>
+            </div>
+            <hr>
+            <h3>4. Selecting Page Elements</h3>
+            <p>To manipulate web elements, they must be selected first.</p>
+            <h4>Selection Methods:</h4>
+            <ul>
+                <li><code>querySelector()</code> – Selects the first matching element.</li>
+                <li><code>querySelectorAll()</code> – Selects all matching elements as a NodeList.</li>
+            </ul>
+            <p>✔ <strong>Example – Selecting Elements:</strong></p>
+            <div class="terminal-container">
+                <div class="terminal-header">CONSOLE</div>
+                <pre><code class="language-javascript">
+let title = document.querySelector("h1");
+console.log(title.textContent); // Logs the text inside
+                </code></pre>
+            </div>
+            <p>✔ <strong>Example – Selecting Multiple Elements:</strong></p>
+            <div class="terminal-container">
+                <div class="terminal-header">CONSOLE</div>
+                <pre><code class="language-javascript">
+let items = document.querySelectorAll("li");
+items.forEach(item => console.log(item.textContent));
+                </code></pre>
+            </div>
+            <hr>
+            <h3>Conclusion</h3>
+            <p>Mastering the <strong>DOM</strong> and <strong>BOM</strong> is crucial for building interactive web applications. By learning how to inspect, select, and manipulate web elements, developers can create dynamic, user-friendly experiences. 🚀</p>
+            <p style="text-align:center; margin-top:20px;">
+                <a href="ACTIVITY7.html" target="_blank" style="background:#0056b3; color:#fff; padding:10px 20px; text-decoration:none; font-weight:bold; border-radius:5px;">ACTIVITY</a>
+            </p>
+        </div>
+        <div id="chapter8" class="chapter">
+            <h3>Interactive Web Content and Event Listeners</h3>
+            <p>Creating <strong>interactive web content</strong> enhances user engagement by responding to actions like clicks, typing, or hovering. This chapter explores event handling techniques, from basic event specification to advanced event listeners.</p>
+            <hr>
+            <h3>1. Understanding Interactive Content</h3>
+            <p>Interactive content modifies the <strong>DOM</strong> based on user input. Common examples include:</p>
+            <ul>
+                <li>✔ <strong>Dynamic postcards</strong></li>
+                <li>✔ <strong>Web-based games</strong></li>
+                <li>✔ <strong>Interactive forms</strong></li>
+            </ul>
+            <hr>
+            <h3>2. Event Handling in JavaScript</h3>
+            <p>Events define how elements react to user interactions. There are <strong>three ways</strong> to specify events:</p>
+            <ol>
+                <li><strong>HTML-based events</strong> – Directly within the tag (e.g., <code>onclick="functionName()"</code>).</li>
+                <li><strong>JavaScript-based events</strong> – Assign functions to element properties.</li>
+                <li><strong>Event Listeners</strong> – Use <code>addEventListener()</code> for multiple event functions.</li>
+            </ol>
+            <p>✔ <strong>Example – Adding an Event Listener:</strong></p>
+            <div class="terminal-container">
+                <div class="terminal-header">CONSOLE</div>
+                <pre><code class="language-javascript">
+document.getElementById("myButton").addEventListener("click", function() {
+    alert("Button clicked!");
+});
+                </code></pre>
+            </div>
+            <hr>
+            <h3>3. Common Event Handlers</h3>
+            <h4>Mouse Events:</h4>
+            <ul>
+                <li><code>ondblclick</code> – Double-click</li>
+                <li><code>onmouseenter</code> / <code>onmouseleave</code> – Mouse enters or leaves an element</li>
+                <li><code>onmousedown</code> / <code>onmouseup</code> – Mouse button pressed or released</li>
+            </ul>
+            <p>✔ <strong>Example – Changing Background Color on Mouse Events:</strong></p>
+            <div class="terminal-container">
+                <div class="terminal-header">CONSOLE</div>
+                <pre><code class="language-javascript">
+myDiv.addEventListener("mousedown", () => myDiv.style.background = "green");
+myDiv.addEventListener("mouseup", () => myDiv.style.background = "yellow");
+myDiv.addEventListener("dblclick", () => myDiv.style.background = "black");
+myDiv.addEventListener("mouseout", () => myDiv.style.background = "blue");
+                </code></pre>
+            </div>
+            <h4>Keyboard Events:</h4>
+            <ul>
+                <li><code>onkeypress</code> – Detects key presses</li>
+                <li><code>onkeydown</code> – Triggers when a key is pressed</li>
+                <li><code>onkeyup</code> – Fires when a key is released</li>
+            </ul>
+            <p>✔ <strong>Example – Detecting Key Presses:</strong></p>
+            <div class="terminal-container">
+                <div class="terminal-header">CONSOLE</div>
+                <pre><code class="language-javascript">
+document.addEventListener("keydown", (event) => {
+    console.log("Key pressed: " + event.key);
+});
+                </code></pre>
+            </div>
+            <hr>
+            <h3>4. DOM Event Flow</h3>
+            <p>Events <strong>propagate</strong> through elements in two ways:</p>
+            <ul>
+                <li><strong>Bubbling (default)</strong>: Events trigger from the innermost to the outermost element.</li>
+                <li><strong>Capturing</strong>: Events trigger from the outermost to the innermost element.</li>
+            </ul>
+            <p>✔ <strong>Example – Event Bubbling:</strong></p>
+            <div class="terminal-container">
+                <div class="terminal-header">CONSOLE</div>
+                <pre><code class="language-javascript">
+document.getElementById("child").addEventListener("click", () => alert("Child clicked"));
+document.getElementById("parent").addEventListener("click", () => alert("Parent clicked"));
+                </code></pre>
+            </div>
+            <p>(Clicking on "child" triggers both alerts due to bubbling.)</p>
+            <hr>
+            <h3>5. Form Events: <code>onchange</code> and <code>onblur</code></h3>
+            <ul>
+                <li><code>onchange</code> – Fires when input value changes.</li>
+                <li><code>onblur</code> – Fires when input loses focus.</li>
+            </ul>
+            <p>✔ <strong>Example – Detecting Input Changes:</strong></p>
+            <div class="terminal-container">
+                <div class="terminal-header">CONSOLE</div>
+                <pre><code class="language-javascript">
+document.getElementById("nameInput").addEventListener("change", () => alert("Input changed!"));
+                </code></pre>
+            </div>
+            <hr>
+            <h3>Conclusion</h3>
+            <p>Event listeners and handlers enable <strong>dynamic user interactions</strong> in web pages. By mastering <strong>mouse events, keyboard inputs, and event propagation</strong>, developers can build <strong>highly interactive</strong> and <strong>responsive</strong> applications. 🚀</p>
+            <p style="text-align:center; margin-top:20px;">
+                <a href="ACTIVITY8.html" target="_blank" style="background:#0056b3; color:#fff; padding:10px 20px; text-decoration:none; font-weight:bold; border-radius:5px;">ACTIVITY</a>
+            </p>
+        </div>
+        <div id="chapter9" class="chapter">
+            <h3>Intermediate JavaScript: Advanced Concepts and Techniques</h3>
+            <p>This chapter explores key <strong>intermediate JavaScript</strong> concepts that enhance functionality, optimize performance, and improve code quality. Topics include <strong>regular expressions, functions, hoisting, strict mode, debugging, cookies, local storage, and JSON</strong>.</p>
+            <hr>
+            <h3>1. Regular Expressions (Regex)</h3>
+            <p>Regex helps in pattern matching, form validation, and text manipulation.</p>
+            <p>✔ <strong>Key Features:</strong></p>
+            <ul>
+                <li><code>/pattern/</code> – Basic regex syntax</li>
+                <li><code>|</code> – Specifies multiple word options</li>
+                <li><code>[]</code> – Character sets</li>
+                <li><code>\d</code> – Matches digits</li>
+                <li><code>\s</code> – Matches whitespace</li>
+                <li><code>\b</code> – Matches word boundaries</li>
+            </ul>
+            <p>✔ <strong>Quantifiers:</strong></p>
+            <ul>
+                <li><code>?</code> – 0 or 1 occurrence</li>
+                <li><code>+</code> – 1 or more occurrences</li>
+                <li><code>*</code> – 0 or more occurrences</li>
+                <li><code>{min,max}</code> – Specifies repetition range</li>
+            </ul>
+            <p>✔ <strong>Example – Email Validation:</strong></p>
+            <div class="terminal-container">
+                <div class="terminal-header">CONSOLE</div>
+                <pre><code class="language-javascript">
+let emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]{2,}$/;
+console.log(emailPattern.test("example@email.com"));
+                </code></pre>
+            </div>
+            <hr>
+            <h3>2. Functions and Arguments Object</h3>
+            <p>JavaScript functions handle arguments dynamically, allowing flexible parameter usage.</p>
+            <p>✔ <strong>Using Arguments Object:</strong></p>
+            <div class="terminal-container">
+                <div class="terminal-header">CONSOLE</div>
+                <pre><code class="language-javascript">
+function sum() {
+    let total = 0;
+    for (let num of arguments) {
+        total += num;
+    }
+    return total;
+}
+console.log(sum(5, 10, 15)); // 30
+                </code></pre>
+            </div>
+            <p>✔ <strong>Modern Approach – Rest Parameter:</strong></p>
+            <div class="terminal-container">
+                <div class="terminal-header">CONSOLE</div>
+                <pre><code class="language-javascript">
+function sum(...numbers) {
+    return numbers.reduce((a, b) => a + b, 0);
+}
+console.log(sum(5, 10, 15)); // 30
+                </code></pre>
+            </div>
+            <hr>
+            <h3>3. JavaScript Hoisting</h3>
+            <p>Hoisting moves variable and function declarations to the top of their scope.</p>
+            <p>✔ <strong>Example – Hoisting Behavior:</strong></p>
+            <div class="terminal-container">
+                <div class="terminal-header">CONSOLE</div>
+                <pre><code class="language-javascript">
+console.log(x); // undefined (due to hoisting)
+var x = 10;
+                </code></pre>
+            </div>
+            <p>✔ <strong>Avoiding Hoisting Issues – Use <code>let</code> or <code>const</code>:</strong></p>
+            <div class="terminal-container">
+                <div class="terminal-header">CONSOLE</div>
+                <pre><code class="language-javascript">
+console.log(y); // Error (let does not hoist)
+let y = 10;
+                </code></pre>
+            </div>
+            <hr>
+            <h3>4. Strict Mode (<code>"use strict"</code>)</h3>
+            <p>Strict mode enforces better coding practices and prevents silent errors.</p>
+            <p>✔ <strong>Enabling Strict Mode:</strong></p>
+            <div class="terminal-container">
+                <div class="terminal-header">CONSOLE</div>
+                <pre><code class="language-javascript">
+"use strict";
+x = 10; // Error: x is not defined
+                </code></pre>
+            </div>
+            <hr>
+            <h3>5. Debugging in JavaScript</h3>
+            <p>Debugging helps identify and fix errors using browser tools.</p>
+            <p>✔ <strong>Key Debugging Techniques:</strong></p>
+            <ul>
+                <li><code>console.log()</code> – Prints values to the console</li>
+                <li><strong>Breakpoints</strong> – Pauses code execution for inspection</li>
+                <li><strong>Error Handling (<code>try...catch</code>)</strong> – Prevents crashes from unexpected issues</li>
+            </ul>
+            <p>✔ <strong>Example – Using <code>try...catch</code>:</strong></p>
+            <div class="terminal-container">
+                <div class="terminal-header">CONSOLE</div>
+                <pre><code class="language-javascript">
+try {
+    let result = riskyOperation();
+} catch (error) {
+    console.error("An error occurred:", error.message);
+}
+                </code></pre>
+            </div>
+            <hr>
+            <h3>Conclusion</h3>
+            <p>Mastering <strong>regex, functions, hoisting, strict mode, and debugging</strong> enables better JavaScript programming. These techniques enhance performance, improve code maintainability, and ensure error-free execution. 🚀</p>
+            <p style="text-align:center; margin-top:20px;">
+                <a href="ACTIVITY9.html" target="_blank" style="background:#0056b3; color:#fff; padding:10px 20px; text-decoration:none; font-weight:bold; border-radius:5px;">ACTIVITY</a>
+            </p>
+        </div>
+        <div id="chapter10" class="chapter">
+            <h3>Enhancing Web Applications with HTML5, Canvas, and JavaScript</h3>
+            <p>The advent of HTML5 has significantly broadened the horizons for web developers, introducing elements like <code>&lt;canvas&gt;</code> that, when combined with JavaScript, enable the creation of rich graphics, dynamic content, and interactive applications. This chapter delves into key features such as the FileReader API, Geolocation API, and the Canvas API, illustrating how they can be harnessed to build engaging web experiences.</p>
+            <hr>
+            <h3>1. HTML5 and JavaScript Integration</h3>
+            <p>HTML5, standardized in 2014, introduced semantic elements like <code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>, and <code>&lt;article&gt;</code>, enhancing the structure and accessibility of web pages. Notably, the <code>&lt;canvas&gt;</code> element provides a drawable region that, through JavaScript, facilitates the rendering of graphics and animations directly in the browser.</p>
+            <hr>
+            <h3>2. Reading Local Files with the FileReader API</h3>
+            <p>The FileReader API empowers web applications to asynchronously read the contents of files selected by users, enabling functionalities like file previews and client-side processing.</p>
+            <p><strong>Example – Reading a Text File:</strong></p>
+            <div class="terminal-container">
+                <div class="terminal-header">CONSOLE</div>
+                <pre><code class="language-html">
+&lt;input type="file" id="fileInput" /&gt;
+&lt;pre id="fileContent"&gt;&lt;/pre&gt;
+
+&lt;script&gt;
+  document.getElementById('fileInput').addEventListener('change', function(event) {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        document.getElementById('fileContent').textContent = e.target.result;
+      };
+      reader.readAsText(file);
+    }
+  });
+&lt;/script&gt;
+                </code></pre>
+            </div>
+            <p>In this example, when a user selects a text file, its content is read and displayed within a <code>&lt;pre&gt;</code> element.</p>
+            <hr>
+            <h3>3. Accessing Geolocation Data</h3>
+            <p>The Geolocation API allows web applications to access the geographical location of a user's device, facilitating location-based services.</p>
+            <p><strong>Example – Retrieving Current Position:</strong></p>
+            <div class="terminal-container">
+                <div class="terminal-header">CONSOLE</div>
+                <pre><code class="language-html">
+&lt;button onclick="getLocation()"&gt;Get Location&lt;/button&gt;
+&lt;p id="location"&gt;&lt;/p&gt;
+
+&lt;script&gt;
+  function getLocation() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(showPosition);
+    } else {
+      document.getElementById('location').textContent = 'Geolocation is not supported by this browser.';
+    }
+  }
+
+  function showPosition(position) {
+    const lat = position.coords.latitude;
+    const lon = position.coords.longitude;
+    document.getElementById('location').textContent = `Latitude: ${lat}, Longitude: ${lon}`;
+  }
+&lt;/script&gt;
+                </code></pre>
+            </div>
+            <p>Upon clicking the button, the application retrieves and displays the user's current latitude and longitude.</p>
+            <hr>
+            <h3>4. Drawing with the Canvas API</h3>
+            <p>The <code>&lt;canvas&gt;</code> element, introduced in HTML5, provides a versatile space for rendering graphics via JavaScript. By accessing the 2D rendering context, developers can draw shapes, text, images, and more.</p>
+            <p><strong>Example – Drawing a Rectangle:</strong></p>
+            <div class="terminal-container">
+                <div class="terminal-header">CONSOLE</div>
+                <pre><code class="language-html">
+&lt;canvas id="myCanvas" width="200" height="100" style="border:1px solid #000000;"&gt;&lt;/canvas&gt;
+
+&lt;script&gt;
+  const canvas = document.getElementById('myCanvas');
+  const ctx = canvas.getContext('2d');
+  ctx.fillStyle = '#FF0000';
+  ctx.fillRect(50, 25, 100, 50);
+&lt;/script&gt;
+                </code></pre>
+            </div>
+            <p>This script draws a red rectangle on the canvas.</p>
+            <hr>
+            <h3>Conclusion</h3>
+            <p>The integration of HTML5 elements with JavaScript APIs like FileReader, Geolocation, and Canvas has revolutionized web development, enabling the creation of dynamic, interactive, and user-centric applications. Mastering these tools empowers developers to craft engaging web experiences that leverage the full capabilities of modern browsers.</p>
+            <p style="text-align:center; margin-top:20px;">
+                <a href="ACTIVITY10.html" target="_blank" style="background:#0056b3; color:#fff; padding:10px 20px; text-decoration:none; font-weight:bold; border-radius:5px;">ACTIVITY</a>
+            </p>
+        </div>
+    </div>
+    <script>
+        function showChapter(chapter) {
+            document.querySelectorAll('.chapter').forEach(ch => ch.classList.remove('active'));
+            document.getElementById('chapter' + chapter).classList.add('active');
+        }
+    </script>
+    <script>
+        // DARK MODE - STA. ROSA
+        document.getElementById('darkModeToggle').addEventListener('click', function() {
+            document.body.classList.toggle('dark-mode');
+        });
+    </script>
+</body>
+</html>
