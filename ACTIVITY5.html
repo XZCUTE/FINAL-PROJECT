@@ -270,19 +270,15 @@
         </div>
         
         <div id="Output" class="tab">
-            <h3>Change Background Color</h3>
-            <button onclick="changeColor('red')">Red</button>
-            <button onclick="changeColor('blue')">Blue</button>
-            <button onclick="changeColor('yellow')">Yellow</button>
-            <button onclick="changeColor('green')">Green</button>
-            <button onclick="changeColor('purple')">Purple</button>
-            <button onclick="changeColor('white')">Reset</button>
+            <h3>Change Background</h3>
+            <h3>Select a color to change the background</h3>
+            <button onclick="openNewTab()">Open in New Tab Output</button>
         </div>
         
         <script>
-            function changeColor(color) {
-                document.body.style.backgroundColor = color;
-            }
+            function openNewTab() {
+                window.open("ACTIVITY5OUTPUT.html", "_blank");
+        }
         </script>
     </div>
 
