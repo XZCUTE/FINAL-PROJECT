@@ -125,6 +125,8 @@
         <div class="nav">
             <a href="#quiz" onclick="showTab('quiz')">Quiz</a>
             <a href="#correct-answers" onclick="showTab('correct-answers')">Correct Answers</a>
+            <a href="#Activity" onclick="showTab('Activity')">Activity</a>
+            <a href="#Output" onclick="showTab('Output')">Output</a>
         </div>
     </div>
 
@@ -137,7 +139,7 @@
                     <p>1. How is a method different from a function?</p>
                     <label><input type="radio" name="q1" value="A">  A function is always anonymous.</label>
                     <label><input type="radio" name="q1" value="B">  A function is part of an array.</label>
-                    <label><input type="radio" name="q1" value="C">  A method cannot return values.</label>
+                    <label><input type="radio" name="q1" value="C">  A function cannot return values.</label>
                     <label><input type="radio" name="q1" value="D">  A method is attached to a class or object.</label>
                 </div>
                 <div class="question">
@@ -241,6 +243,72 @@
                 <p>10. How can you format a number to two decimal places? <span class="correct">✅ Use the toFixed(2) method.</span></p>
             </div>
         </div>
+
+        <div id="Activity" class="tab">
+            <h2>Instructions:</h2>
+            <p><strong>Set Up Your Development Environment</strong></p>
+            <ul>
+                <li>Open your preferred code editor (e.g., VS Code, Sublime Text, or Notepad++).</li>
+                <li>Create a new file and save it with the .html extension (e.g., Activity 6.html).</li>
+            </ul>
+            
+            <p><strong>Create a Simple Calculator Interface</strong></p>
+            <ul>
+                <li>Add two input fields for users to enter the first and second numbers.</li>
+                <li>Include buttons for basic arithmetic operations:
+                    <ul>
+                        <li>Addition</li>
+                        <li>Subtraction</li>
+                        <li>Multiplication</li>
+                        <li>Division</li>
+                        <li>Remainder</li>
+                        <li>Clear</li>
+                    </ul>
+                </li>
+            </ul>
+            
+            <p><strong>Implement the Functionality</strong></p>
+            <ul>
+                <li>Use JavaScript to retrieve values from the input fields.</li>
+                <li>Perform the selected operation when the corresponding button is clicked.</li>
+                <li>Display the result in an alert box.</li>
+                <li>Ensure error handling for cases such as:
+                    <ul>
+                        <li>Empty input fields.</li>
+                        <li>Division by zero.</li>
+                    </ul>
+                </li>
+            </ul>
+            
+            <p><strong>Final Output</strong></p>
+            <ul>
+                <li>Your calculator should allow users to:
+                    <ul>
+                        <li>✅ Enter two numbers.</li>
+                        <li>✅ Perform basic arithmetic operations.</li>
+                        <li>✅ Receive alerts displaying the results.</li>
+                        <li>✅ Clear the input fields when needed.</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <div id="Output" class="tab">
+            <h3>Calculator</h3>
+            <div>
+                <input type="number" id="Num1" placeholder="Enter first number">
+                <input type="number" id="Num2" placeholder="Enter second number">
+                <br>
+                <br>
+                <br>
+                <button onclick="add()">Addition</button>
+                <button onclick="sub()">Subtraction</button>
+                <button onclick="mul()">Multiplication</button>
+                <button onclick="div()">Division</button>
+                <button onclick="mod()">Remainder</button>
+                <button onclick="clearFields()">Clear</button>
+            </div>
+        </div>
     </div>
 
     <script>
@@ -272,7 +340,7 @@
                 }
             }
             document.getElementById('result').innerText = `You scored ${score} out of ${Object.keys(answers).length}.`;
-            quizSubmitted = true;
+            quizSubmitted = true; 
         });
 
         function showTab(tabName) {
@@ -283,11 +351,69 @@
 
             if (tabName === 'correct-answers' && !quizSubmitted) {
                 alert("You cannot access the correct answers without completing the quiz first.");
-                return;
+                return; 
             }
             document.getElementById(tabName).classList.add('active');
+        }
+
+        function add() {
+            var num1 = document.getElementById("Num1").value;
+            var num2 = document.getElementById("Num2").value;
+            if (num1 === '' || num2 === '') {
+                alert("Insert the first and second numbers into the input field");
+            } else {
+                alert(parseFloat(num1) + parseFloat(num2));
+            }
+        }
+
+        function sub() {
+            var num1 = document.getElementById("Num1").value;
+            var num2 = document.getElementById("Num2").value;
+            if (num1 === '' || num2 === '') {
+                alert("Insert the first and second numbers into the input field");
+            } else {
+                alert(parseFloat(num1) - parseFloat(num2));
+            }
+        }
+
+        function mul() {
+            var num1 = document.getElementById("Num1").value;
+            var num2 = document.getElementById("Num2").value;
+            if (num1 === '' || num2 === '') {
+                alert("Insert the first and second numbers into the input field");
+            } else {
+                alert(parseFloat(num1) * parseFloat(num2));
+            }
+        }
+
+        function div() {
+            var num1 = document.getElementById("Num1").value;
+            var num2 = document.getElementById("Num2").value;
+            if (num1 === '' || num2 === '') {
+                alert("Insert the first and second numbers into the input field");
+            } else if (parseFloat(num2) !== 0) {
+                alert(parseFloat(num1) / parseFloat(num2));
+            } else {
+                alert("Cannot divide by zero!");
+            }
+        }
+
+        function mod() {
+            var num1 = document.getElementById("Num1").value;
+            var num2 = document.getElementById("Num2").value;
+            if (num1 === '' || num2 === '') {
+                alert("Insert the first and second numbers into the input field");
+            } else if (parseFloat(num2) !== 0) {
+                alert(parseFloat(num1) % parseFloat(num2)); 
+            } else {
+                alert("Invalid!");
+            }
+        }
+
+        function clearFields() {
+            document.getElementById("Num1").value = '';
+            document.getElementById("Num2").value = '';
         }
     </script>
 </body>
 </html>
-

@@ -125,6 +125,8 @@
         <div class="nav">
             <a href="#quiz" onclick="showTab('quiz')">Quiz</a>
             <a href="#correct-answers" onclick="showTab('correct-answers')">Correct Answers</a>
+            <a href="#Activity" onclick="showTab('Activity')">Activity</a>
+            <a href="#Output" onclick="showTab('Output')">Output</a>
         </div>
     </div>
 
@@ -240,6 +242,115 @@
             <div class="question">
                 <p>10. What happens in a do-while with false conditions? <span class="correct">✅ The block runs once before stopping.</span></p>
             </div>
+        </div>
+
+        <div id="Activity" class="tab">
+            <h2>Instructions:</h2>
+            <p><strong>Set Up Your Development Environment</strong></p>
+            <ul>
+                <li>Open your preferred code editor (e.g., VS Code, Sublime Text, or Notepad++).</li>
+                <li>Create a new file and save it with the .html extension (e.g., LoopsActivity.html).</li>
+            </ul>
+            
+            <p><strong>Implement JavaScript Loops</strong></p>
+            <ul>
+                <li>Create buttons to trigger different loop types:</li>
+                <ul>
+                    <li>While Loop</li>
+                    <li>Do While Loop</li>
+                    <li>For Loop</li>
+                    <li>Finding a Value in an Array</li>
+                    <li>Creating an Array</li>
+                    <li>Nested Loops</li>
+                </ul>
+                <br>
+                <li>Each button should trigger the respective JavaScript function.</li>
+                <li>Display alerts notifying users when loops are running.</li>
+                <li>Log results to the console.</li>
+            </ul>
+        </div>
+
+        <div id="Output" class="tab">
+                <!DOCTYPE html>
+                <html lang="en">
+                <head>
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <title>Document</title>
+                </head>
+                <body>
+                    <button onclick="runWhileLoop()">Run While Loop</button>
+                    <button onclick="runDoWhileLoop()">Run Do While Loop</button>
+                    <button onclick="runForLoop()">Run For Loop</button>
+                    <button onclick="findInArray()">Find Value in Array</button>
+                    <button onclick="createArray()">Create Array</button>
+                    <button onclick="nestedLoops()">Run Nested Loops</button>
+                    <button onclick="clearConsole()">Clear Console</button>
+                
+                    <script>
+                        function runWhileLoop() {
+                            alert("While Loop is running, check the console");
+                            let count = 0;
+                            while (count < 5) {
+                                console.log("While Loop Count:", count);
+                                count++;
+                            }
+                        }
+                        
+                        function runDoWhileLoop() {
+                            alert("Do While Loop is running, check the console");
+                            let num = 0;
+                            do { console.log("Do While Loop Num:", num);
+                                num++;
+                            } while (num < 5);
+                        }
+                
+                        function runForLoop() {
+                            alert("For Loop is running, check the console");
+                            for (let i = 0; i < 5; i++) {
+                                console.log("For Loop Index:", i);
+                            } // IF YOU WANT INFINITE LOOP JUST REMOVE THE CONDITION - STA. ROSA
+                        }
+                        
+                        function findInArray() {
+                            alert("Finding a value in an array, check the console");
+                            let arr = [10, 20, 30, 40, 50];
+                            let searchValue = 30;
+                            let index = 0;
+                            while (index < arr.length) {
+                                if (arr[index] === searchValue) {
+                                    console.log("Value found at index:", index);
+                                    break;
+                                }
+                                index++;
+                            }
+                        }
+
+                        function createArray() {
+                            alert("Creating an array, check the console");
+                            let numbers = [];
+                            for (let i = 1; i <= 5; i++) {
+                                numbers.push(i * 10);
+                            }
+                            console.log("Created Array:", numbers);
+                        }
+                
+                        function nestedLoops() {
+                            alert("Nested Loops are running, check the console");
+                            for (let i = 1; i <= 3; i++) {
+                                for (let j = 1; j <= 3; j++) {
+                                    console.log(`i: ${i}, j: ${j}`);
+                                }
+                            }
+                        }
+
+                        function clearConsole() {
+                            console.clear();
+                            alert("Console cleared");
+                        }
+                    </script>
+                </body>
+            </html>
         </div>
     </div>
 
