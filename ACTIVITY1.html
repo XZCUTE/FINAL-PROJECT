@@ -125,6 +125,8 @@
         <div class="nav">
             <a href="#quiz" onclick="showTab('quiz')">Quiz</a>
             <a href="#correct-answers" onclick="showTab('correct-answers')">Correct Answers</a>
+            <a href="#Activity" onclick="showTab('Activity')">Activity</a>
+            <a href="#Output" onclick="showTab('Output')">Output</a>
         </div>
     </div>
 
@@ -241,8 +243,49 @@
                 <p>10. What does back-end development primarily handle? <span class="correct">✅ Server-side logic</span></p>
             </div>
         </div>
-    </div>
 
+        <div id="Activity" class="tab">
+            <h2>Instructions:</h2>
+            <p><strong>Set Up Your Development Environment</strong></p>
+            <ul>
+                <li>Open your preferred code editor (e.g., VS Code, Sublime Text, or Notepad++).</li>
+                <li>Create a new file and save it with the .html extension (e.g., Activity1.html).</li>
+            </ul>
+            
+            <p><strong>Create a Basic Webpage</strong></p>
+            <ul>
+                <li>Structure your HTML document with <code>&lt;html&gt;</code>, <code>&lt;head&gt;</code>, and <code>&lt;body&gt;</code> sections.</li>
+                <li>Set a title for your webpage.</li>
+            </ul>
+            
+            <p><strong>Add Content to the Page</strong></p>
+            <ul>
+                <li>Inside the <code>&lt;body&gt;</code>, add an <code>&lt;h1&gt;</code> element that displays "Hello, World!".</li>
+            </ul>
+            
+            <p><strong>Final Output</strong></p>
+            <ul>
+                <li>Your webpage should display "Hello, World!" as a heading.</li>
+        </ul>
+        </div>
+
+        <div id="Output" class="tab">
+            <pre>
+                <!DOCTYPE html>
+                <html lang="en">
+                <head>
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <title>Document</title>
+                </head>
+                <body>
+                    <h1>Hello, World!</h1>
+                </body>
+                </html>
+            </pre>
+            </div>
+        </div>
+        
     <script>
         let quizSubmitted = false;
 
