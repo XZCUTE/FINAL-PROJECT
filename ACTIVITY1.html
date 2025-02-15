@@ -245,29 +245,45 @@
         </div>
 
         <div id="Activity" class="tab">
-            <h2>Instructions:</h2>
-            <p><strong>Set Up Your Development Environment</strong></p>
+    <h2>Instructions:</h2>
+    
+    <p><strong>Set Up Your Development Environment</strong></p>
+    <ul>
+        <li>Open your preferred code editor (e.g., VS Code, Sublime Text, or Notepad++).</li>
+        <li>Create a new file and save it with the <code>.html</code> extension (e.g., Activity1.html).</li>
+    </ul>
+    
+    <p><strong>Create a Basic Webpage</strong></p>
+    <ul>
+        <li>Structure your HTML document with <code>&lt;html&gt;</code>, <code>&lt;head&gt;</code>, and <code>&lt;body&gt;</code> sections.</li>
+        <li>Set a title for your webpage.</li>
+    </ul>
+    
+    <p><strong>Add Content to the Page</strong></p>
+    <ul>
+        <li>Inside the <code>&lt;body&gt;</code>, add an <code>&lt;h1&gt;</code> element that displays "Hello, World!".</li>
+        <li>Add a <code>&lt;button&gt;</code> element with the label "Change Color".</li>
+        <li>Ensure the button changes the text color of the <code>&lt;h1&gt;</code> element to red when clicked.</li>
+    </ul>
+
+    <p><strong>Implement the Functionality</strong></p>
+    <ul>
+        <li>Use JavaScript within the <code>onclick</code> attribute of the button to change the color of the <code>&lt;h1&gt;</code>.</li>
+        <li>Ensure that clicking the button updates the color without needing a separate function.</li>
+    </ul>
+    
+    <p><strong>Final Output</strong></p>
+    <ul>
+        <li>Your webpage should:
             <ul>
-                <li>Open your preferred code editor (e.g., VS Code, Sublime Text, or Notepad++).</li>
-                <li>Create a new file and save it with the .html extension (e.g., Activity1.html).</li>
+                <li>✅ Display "Hello, World!" as a heading.</li>
+                <li>✅ Include a "Change Color" button.</li>
+                <li>✅ Change the color of "Hello, World!" to red when the button is clicked.</li>
             </ul>
-            
-            <p><strong>Create a Basic Webpage</strong></p>
-            <ul>
-                <li>Structure your HTML document with <code>&lt;html&gt;</code>, <code>&lt;head&gt;</code>, and <code>&lt;body&gt;</code> sections.</li>
-                <li>Set a title for your webpage.</li>
-            </ul>
-            
-            <p><strong>Add Content to the Page</strong></p>
-            <ul>
-                <li>Inside the <code>&lt;body&gt;</code>, add an <code>&lt;h1&gt;</code> element that displays "Hello, World!".</li>
-            </ul>
-            
-            <p><strong>Final Output</strong></p>
-            <ul>
-                <li>Your webpage should display "Hello, World!" as a heading.</li>
-        </ul>
-        </div>
+        </li>
+    </ul>
+</div>
+
 
         <div id="Output" class="tab">
             <pre>
@@ -279,8 +295,10 @@
                     <title>Document</title>
                 </head>
                 <body>
-                    <h1>Hello, World!</h1>
+                    <button onclick="document.getElementById('h1').style.color = 'red';">Change Color</button>
+                    <h1 id="h1">Hello, World!</h1>
                 </body>
+                <script> </script>
                 </html>
             </pre>
             </div>
