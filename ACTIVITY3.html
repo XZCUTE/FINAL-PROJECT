@@ -125,6 +125,8 @@
         <div class="nav">
             <a href="#quiz" onclick="showTab('quiz')">Quiz</a>
             <a href="#correct-answers" onclick="showTab('correct-answers')">Correct Answers</a>
+            <a href="#Activity" onclick="showTab('Activity')">Activity</a>
+            <a href="#Output" onclick="showTab('Output')">Output</a>
         </div>
     </div>
 
@@ -241,6 +243,111 @@
                 <p>10. What does an if statement do in JavaScript? <span class="correct">✅ Executes a block if the condition is true</span></p>
             </div>
         </div>
+
+        <div id="Activity" class="tab">
+            <h2>Instructions:</h2>
+            <p><strong>Set Up Your Development Environment</strong></p>
+            <ul>
+                <li>Open your preferred code editor (e.g., VS Code, Sublime Text, or Notepad++).</li>
+                <li>Create a new file and save it with the .html extension (e.g., ConditionalsActivity.html).</li>
+            </ul>
+            
+            <p><strong>Implement JavaScript Conditional Statements</strong></p>
+            <ul>
+                <li>Create buttons to trigger different conditional statements:</li>
+                <ul>
+                    <li>If Statement</li>
+                    <li>If-Else Statement</li>
+                    <li>Else If Statement</li>
+                    <li>Conditional (Ternary) Operator</li>
+                    <li>Switch Statement</li>
+                    <li>Clear Console</li>
+                </ul>
+                <br>
+                <li>Each button should trigger the respective JavaScript function.</li>
+                <li>Display alerts notifying users when conditionals are being executed.</li>
+                <li>Log results to the console.</li>
+            </ul>
+        </div>
+        
+        <div id="Output" class="tab">
+            <h3>JavaScript Conditionals</h3>
+            <button onclick="runIfStatement()">If Statement</button>
+            <button onclick="runIfElseStatement()">If Else Statement</button>
+            <button onclick="runElseIfStatement()">Else If Statement</button>
+            <button onclick="runTernaryOperator()">Ternary Operator</button>
+            <button onclick="runSwitchStatement()">Switch Statement</button>
+            <button onclick="clearConsole()">Clear Console</button>
+        </div>
+        
+        <script>
+            function runIfStatement() {
+                let code = "let num = 10;\nif (num > 5) {\n    console.log(\"The number is greater than 5\");\n}";
+                alert("If Statement is running:\n\n" + code);
+                let num = 10;
+                if (num > 5) {
+                    console.log("The number is greater than 5");
+                }
+            }
+    
+            function runIfElseStatement() {
+                let code = "let num = 3;\nif (num > 5) {\n    console.log(\"The number is greater than 5\");\n} else {\n    console.log(\"The number is 5 or less\");\n}";
+                alert("If Else Statement is running:\n\n" + code);
+                let num = 3;
+                if (num > 5) {
+                    console.log("The number is greater than 5");
+                } else {
+                    console.log("The number is 5 or less");
+                }
+            }
+    
+            function runElseIfStatement() {
+                let code = "let num = 5;\nif (num > 10) {\n    console.log(\"The number is greater than 10\");\n} else if (num > 5) {\n    console.log(\"The number is greater than 5 but not more than 10\");\n} else {\n    console.log(\"The number is 5 or less\");\n}";
+                alert("Else If Statement is running:\n\n" + code);
+                let num = 5;
+                if (num > 10) {
+                    console.log("The number is greater than 10");
+                } else if (num > 5) {
+                    console.log("The number is greater than 5 but not more than 10");
+                } else {
+                    console.log("The number is 5 or less");
+                }
+            }
+    
+            function runTernaryOperator() {
+                let code = "let num = 7;\nlet result = (num > 5) ? \"Greater than 5\" : \"5 or less\";\nconsole.log(\"Ternary Operator Result:\", result);";
+                alert("Ternary Operator is running:\n\n" + code);
+                let num = 7;
+                let result = (num > 5) ? "Greater than 5" : "5 or less";
+                console.log("Ternary Operator Result:", result);
+            }
+    
+            function runSwitchStatement() {
+                let code = "let day = \"Monday\";\nswitch (day) {\n    case \"Monday\":\n        console.log(\"Today is Monday\");\n        break;\n    case \"Tuesday\":\n        console.log(\"Today is Tuesday\");\n        break;\n    case \"Wednesday\":\n        console.log(\"Today is Wednesday\");\n        break;\n    default:\n        console.log(\"It's another day\");\n}";
+                alert("Switch Statement is running:\n\n" + code);
+                let day = "Monday";
+                switch (day) {
+                    case "Monday":
+                        console.log("Today is Monday");
+                        break;
+                    case "Tuesday":
+                        console.log("Today is Tuesday");
+                        break;
+                    case "Wednesday":
+                        console.log("Today is Wednesday");
+                        break;
+                    default:
+                        console.log("It's another day");
+                }
+            }
+    
+            function clearConsole() {
+                console.clear();
+                alert("Console cleared");
+            }
+        </script>
+        
+
     </div>
 
     <script>

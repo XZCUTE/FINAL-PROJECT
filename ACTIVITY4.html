@@ -279,41 +279,47 @@
                     <title>Document</title>
                 </head>
                 <body>
-                    <button onclick="runWhileLoop()">Run While Loop</button>
-                    <button onclick="runDoWhileLoop()">Run Do While Loop</button>
-                    <button onclick="runForLoop()">Run For Loop</button>
-                    <button onclick="findInArray()">Find Value in Array</button>
+                    <h3>Javascript Loops</h3>
+                    <button onclick="runWhileLoop()">While Loop</button>
+                    <button onclick="runDoWhileLoop()">Do While Loop</button>
+                    <button onclick="runForLoop()">For Loop</button>
+                    <button onclick="findInArray()">Value in Array</button>
                     <button onclick="createArray()">Create Array</button>
-                    <button onclick="nestedLoops()">Run Nested Loops</button>
+                    <button onclick="nestedLoops()">Nested Loops</button>
                     <button onclick="clearConsole()">Clear Console</button>
                 
                     <script>
                         function runWhileLoop() {
-                            alert("While Loop is running, check the console");
+                            let code = "let count = 0;\nwhile (count < 5) {\n    console.log(\"While Loop Count:\", count);\n    count++;\n}";
+                            alert("While Loop is running:\n\n" + code);
                             let count = 0;
                             while (count < 5) {
                                 console.log("While Loop Count:", count);
                                 count++;
                             }
                         }
-                        
+                
                         function runDoWhileLoop() {
-                            alert("Do While Loop is running, check the console");
+                            let code = "let num = 0;\ndo {\n    console.log(\"Do While Loop Num:\", num);\n    num++;\n} while (num < 5);";
+                            alert("Do While Loop is running:\n\n" + code);
                             let num = 0;
-                            do { console.log("Do While Loop Num:", num);
+                            do {
+                                console.log("Do While Loop Num:", num);
                                 num++;
                             } while (num < 5);
                         }
                 
                         function runForLoop() {
-                            alert("For Loop is running, check the console");
+                            let code = "for (let i = 0; i < 5; i++) {\n    console.log(\"For Loop Index:\", i);\n}";
+                            alert("For Loop is running:\n\n" + code);
                             for (let i = 0; i < 5; i++) {
                                 console.log("For Loop Index:", i);
-                            } // IF YOU WANT INFINITE LOOP JUST REMOVE THE CONDITION - STA. ROSA
+                            }
                         }
-                        
+                
                         function findInArray() {
-                            alert("Finding a value in an array, check the console");
+                            let code = "let arr = [10, 20, 30, 40, 50];\nlet searchValue = 30;\nlet index = 0;\nwhile (index < arr.length) {\n    if (arr[index] === searchValue) {\n        console.log(\"Value found at index:\", index);\n        break;\n    }\n    index++;\n}";
+                            alert("Finding a value in an array:\n\n" + code);
                             let arr = [10, 20, 30, 40, 50];
                             let searchValue = 30;
                             let index = 0;
@@ -325,9 +331,10 @@
                                 index++;
                             }
                         }
-
+                
                         function createArray() {
-                            alert("Creating an array, check the console");
+                            let code = "let numbers = [];\nfor (let i = 1; i <= 5; i++) {\n    numbers.push(i * 10);\n}\nconsole.log(\"Created Array:\", numbers);";
+                            alert("Creating an array:\n\n" + code);
                             let numbers = [];
                             for (let i = 1; i <= 5; i++) {
                                 numbers.push(i * 10);
@@ -336,14 +343,15 @@
                         }
                 
                         function nestedLoops() {
-                            alert("Nested Loops are running, check the console");
+                            let code = "for (let i = 1; i <= 3; i++) {\n    for (let j = 1; j <= 3; j++) {\n        console.log(`i: ${i}, j: ${j}`);\n    }\n}";
+                            alert("Nested Loops are running:\n\n" + code);
                             for (let i = 1; i <= 3; i++) {
                                 for (let j = 1; j <= 3; j++) {
                                     console.log(`i: ${i}, j: ${j}`);
                                 }
                             }
                         }
-
+                
                         function clearConsole() {
                             console.clear();
                             alert("Console cleared");
