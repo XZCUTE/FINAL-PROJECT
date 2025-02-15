@@ -125,6 +125,8 @@
         <div class="nav">
             <a href="#quiz" onclick="showTab('quiz')">Quiz</a>
             <a href="#correct-answers" onclick="showTab('correct-answers')">Correct Answers</a>
+            <a href="#Activity" onclick="showTab('Activity')">Activity</a>
+            <a href="#Output" onclick="showTab('Output')">Output</a>
         </div>
     </div>
 
@@ -241,6 +243,47 @@
                 <p>10. What is an advantage of modular functions? <span class="correct">✅ They make debugging easier.</span></p>
             </div>
         </div>
+
+        <div id="Activity" class="tab">
+            <h2>Instructions:</h2>
+            
+            <p><strong>Set Up Your Development Environment</strong></p>
+            <ul>
+                <li>Open your preferred code editor (e.g., VS Code, Sublime Text, or Notepad++).</li>
+                <li>Create a new file and save it with the <code>.html</code> extension (e.g., Activity3.html).</li>
+            </ul>
+            
+            <p><strong>Change Background Color Using JavaScript</strong></p>
+            <ul>
+                <li>Create multiple buttons, each assigned to a different color.</li>
+                <li>Use JavaScript functions to change the background color when a button is clicked.</li>
+                <li>Include a button to reset the background to white (default color).</li>
+                <li>Use <code>document.body.style.backgroundColor</code> to apply the color change.</li>
+            </ul>
+            
+            <p><strong>Final Output</strong></p>
+            <ul>
+                <li>✅ A webpage with <strong>buttons</strong> that change the background color.</li>
+                <li>✅ Clicking each button should instantly change the background to the selected color.</li>
+                <li>✅ A <strong>Reset button</strong> should restore the background to white.</li>
+            </ul>
+        </div>
+        
+        <div id="Output" class="tab">
+            <h3>Change Background Color</h3>
+            <button onclick="changeColor('red')">Red</button>
+            <button onclick="changeColor('blue')">Blue</button>
+            <button onclick="changeColor('yellow')">Yellow</button>
+            <button onclick="changeColor('green')">Green</button>
+            <button onclick="changeColor('purple')">Purple</button>
+            <button onclick="changeColor('white')">Reset</button>
+        </div>
+        
+        <script>
+            function changeColor(color) {
+                document.body.style.backgroundColor = color;
+            }
+        </script>
     </div>
 
     <script>

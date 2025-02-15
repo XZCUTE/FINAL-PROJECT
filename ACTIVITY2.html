@@ -125,6 +125,8 @@
         <div class="nav">
             <a href="#quiz" onclick="showTab('quiz')">Quiz</a>
             <a href="#correct-answers" onclick="showTab('correct-answers')">Correct Answers</a>
+            <a href="#Activity" onclick="showTab('Activity')">Activity</a>
+            <a href="#Output" onclick="showTab('Output')">Output</a>
         </div>
     </div>
 
@@ -241,6 +243,95 @@
                 <p>10. What happens if you declare a variable using let inside a block? <span class="correct">✅ It has block scope</span></p>
             </div>
         </div>
+
+        <div id="Activity" class="tab">
+            <h2>Instructions:</h2>
+        
+            <p><strong>Set Up Your Development Environment</strong></p>
+            <ul>
+                <li>Open your preferred code editor (e.g., VS Code, Sublime Text, or Notepad++).</li>
+                <li>Create a new file and save it with the <code>.html</code> extension (e.g., Activity2.html).</li>
+            </ul>
+        
+            <p><strong>Understanding JavaScript Operators</strong></p>
+            <ul>
+                <li>Use JavaScript to demonstrate different types of operators:</li>
+                <ul>
+                    <li>Arithmetic Operators</li>
+                    <li>Comparison Operators</li>
+                    <li>Logical Operators</li>
+                    <li>Assignment Operators</li>
+                </ul>
+                <li>Use <code>alert()</code> and <code>console.log()</code> to display the results.</li>
+            </ul>
+        
+            <p><strong>Final Output</strong></p>
+            <ul>
+                <li>✅ A webpage that runs JavaScript code demonstrating operators.</li>
+                <li>✅ Results should be displayed in an **alert box** and console.</li>
+                <li>✅ Use buttons to execute specific operations.</li>
+            </ul>
+        </div>
+        
+        <div id="Output" class="tab">
+            <h3>JavaScript Operators</h3>
+            <button onclick="arithmeticOperations()">Arithmetic Operators</button>
+            <button onclick="comparisonOperations()">Comparison Operators</button>
+            <button onclick="logicalOperations()">Logical Operators</button>
+            <button onclick="assignmentOperations()">Assignment Operators</button>
+            <button onclick="console.clear()">Clear Console</button>
+        </div>
+        
+        <script>
+            function arithmeticOperations() {
+                let a = 10, b = 3;
+                let code = `let a = 10, b = 3;\n\nconsole.log("Addition:", a + b);\nconsole.log("Subtraction:", a - b);\nconsole.log("Multiplication:", a * b);\nconsole.log("Division:", a / b);\nconsole.log("Modulus:", a % b);\nconsole.log("Increment a:", ++a);\nconsole.log("Decrement b:", --b);`;
+                alert("Executing:\n" + code);
+                console.log("Addition:", a + b);
+                console.log("Subtraction:", a - b);
+                console.log("Multiplication:", a * b);
+                console.log("Division:", a / b);
+                console.log("Modulus:", a % b);
+            }
+        
+            function comparisonOperations() {
+                let x = 10, y = "10";
+                let code = `let x = 10, y = "10";\n\nconsole.log("Equal (==):", x == y);\nconsole.log("Strict Equal (===):", x === y);\nconsole.log("Not Equal (!=):", x != y);\nconsole.log("Strict Not Equal (!==):", x !== y);\nconsole.log("Greater than:", x > 5);\nconsole.log("Less than or Equal:", x <= 10);`;
+                alert("Executing:\n" + code);
+                console.log("Equal (==):", x == y);
+                console.log("Strict Equal (===):", x === y);
+                console.log("Not Equal (!=):", x != y);
+                console.log("Strict Not Equal (!==):", x !== y);
+                console.log("Greater than:", x > 5);
+                console.log("Less than or Equal:", x <= 10);
+            }
+        
+            function logicalOperations() {
+                let p = true, q = false;
+                let code = `let p = true, q = false;\n\nconsole.log("AND (p && q):", p && q);\nconsole.log("OR (p || q):", p || q);\nconsole.log("NOT (!p):", !p);`;
+                alert("Executing:\n" + code);
+                console.log("AND (p && q):", p && q);
+                console.log("OR (p || q):", p || q);
+                console.log("NOT (!p):", !p);
+            }
+        
+            function assignmentOperations() {
+                let num = 5;
+                let code = `let num = 5;\n\nnum += 2;\nconsole.log("num += 2:", num);\nnum -= 1;\nconsole.log("num -= 1:", num);\nnum *= 3;\nconsole.log("num *= 3:", num);\nnum /= 2;\nconsole.log("num /= 2:", num);\nnum %= 2;\nconsole.log("num %= 2:", num);`;
+                alert("Executing:\n" + code);
+                console.log("Initial Value:", num);
+                num += 2;
+                console.log("num += 2:", num);
+                num -= 1;
+                console.log("num -= 1:", num);
+                num *= 3;
+                console.log("num *= 3:", num);
+                num /= 2;
+                console.log("num /= 2:", num);
+                num %= 2;
+                console.log("num %= 2:", num);
+            }
+        </script>
     </div>
 
     <script>
