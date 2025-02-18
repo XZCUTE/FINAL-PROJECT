@@ -125,6 +125,8 @@
         <div class="nav">
             <a href="#quiz" onclick="showTab('quiz')">Quiz</a>
             <a href="#correct-answers" onclick="showTab('correct-answers')">Correct Answers</a>
+            <a href="#Activity" onclick="showTab('Activity')">Activity</a>
+            <a href="#Output" onclick="showTab('Output')">Output</a>
         </div>
     </div>
 
@@ -241,6 +243,48 @@
                 <p>10. What CSS property is essential for element animation? <span class="correct">✅ position: absolute</span></p>
             </div>
         </div>
+
+        <div id="Activity" class="tab">
+            <h2>Instructions:</h2>
+            
+            <p><strong>Set Up Your Development Environment</strong></p>
+            <ul>
+                <li>Open your preferred code editor (e.g., VS Code, Sublime Text, or Notepad++).</li>
+                <li>Create a new file and save it with the <code>.html</code> extension (e.g., InputFieldChangeColor.html).</li>
+            </ul>
+            
+            <p><strong>Change Background Color by User Input</strong></p>
+            <ul>
+                <li>Create an input field where users can enter a color name or hex code.</li>
+                <li>Add a button that, when clicked, changes the background color to the entered value.</li>
+                <li>Ensure the color updates instantly upon clicking the button.</li>
+            </ul>
+            
+            <p><strong>Final Output</strong></p>
+            <ul>
+                <li>✅ A webpage where users can change the <strong>background color</strong> by entering a color.</li>
+                <li>✅ The input field should be focused automatically when the page loads.</li>
+                <li>✅ The color should apply instantly when clicking the button.</li>
+            </ul>
+        </div>
+        
+
+
+        
+        <div id="Output" class="tab">
+            <h3>Customize Your Background Color</h3>
+            <h3>Type in input box a color name or hex code and click the button to apply it.</h3>
+            <button onclick="openNewTab()">Open in New Tab Output</button>
+        </div>
+        
+        <script>
+            function openNewTab() {
+                window.open("ACTIVITY8OUTPUT.html", "_blank");
+            }
+        </script>
+
+        </div>
+
     </div>
 
     <script>

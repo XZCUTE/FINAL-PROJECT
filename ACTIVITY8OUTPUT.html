@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Change Bacckground Color by Input</title>
+</head>
+<body>
+    <input type="text" id="ChangeColor"placeholder= "Input Color">
+    <button id="ChangeButton" onclick="changecolor()">Change</button>
+
+    <script>
+        function changecolor() {
+            let color = document.getElementById("ChangeColor").value;
+            document.body.style.backgroundColor = color;
+        }
+
+        window.addEventListener("load", function() {
+            document.getElementById('ChangeColor').focus();
+    });
+        document.getElementById('ChangeButton').addEventListener('click',changecolor);
+    </script>
+</body>
+</html>
