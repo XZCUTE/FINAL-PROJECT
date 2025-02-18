@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intermediate JavaScript Concepts</title>
+</head>
+<body>
+    <h2>Regular Expression - Email Validation</h2>
+    <input type="text" id="emailInput" placeholder="Enter your email">
+    <button onclick="validateEmail()">Validate</button>
+    <p id="emailResult"></p>
+
+    <h2>Local Storage Example</h2>
+    <input type="text" id="nameInput" placeholder="Enter your name">
+    <button onclick="saveName()">Save Name</button>
+    <p id="savedName"></p>
+
+    <script>
+        "use strict"; 
+
+        function validateEmail() {
+            let email = document.getElementById("emailInput").value;
+            let regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+            let result = regex.test(email) ? "Valid Email ✅" : "Invalid Email ❌";
+            document.getElementById("emailResult").innerText = result;
+        }
+
+        function saveName() {
+            let name = document.getElementById("nameInput").value;
+            localStorage.setItem("userName", name);
+            document.getElementById("savedName").innerText = "Saved Name: " + name;
+        }
+    </script>
+</body>
+</html>

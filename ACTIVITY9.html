@@ -125,6 +125,8 @@
         <div class="nav">
             <a href="#quiz" onclick="showTab('quiz')">Quiz</a>
             <a href="#correct-answers" onclick="showTab('correct-answers')">Correct Answers</a>
+            <a href="#Activity" onclick="showTab('Activity')">Activity</a>
+            <a href="#Output" onclick="showTab('Output')">Output</a>
         </div>
     </div>
 
@@ -240,7 +242,51 @@
                 <p>10. What is the output of JSON.stringify()? <span class="correct">✅ A JSON string</span></p>
             </div>
         </div>
+
+    <div id="Activity" class="tab">
+        <h2>Instructions:</h2>
+        
+        <p><strong>Set Up Your Development Environment</strong></p>
+        <ul>
+            <li>Open your preferred code editor (e.g., VS Code, Sublime Text, or Notepad++).</li>
+            <li>Create a new file and save it with the <code>.html</code> extension (e.g., Activity6.html).</li>
+        </ul>
+        
+        <p><strong>Email Validation using Regular Expressions</strong></p>
+        <ul>
+            <li>Use JavaScript to validate email input using regular expressions.</li>
+            <li>Display a message indicating whether the email is valid or invalid.</li>
+        </ul>
+        
+        <p><strong>Local Storage Example</strong></p>
+        <ul>
+            <li>Allow the user to input their name and save it in local storage.</li>
+            <li>Retrieve the saved name and display it on the page after it has been saved.</li>
+        </ul>
+        
+        <p><strong>Final Output</strong></p>
+        <ul>
+            <li>✅ A webpage that validates an email address using regular expressions and displays the result.</li>
+            <li>✅ A webpage that saves and retrieves a name using local storage.</li>
+            <li>✅ The page should display a validation message when the user inputs an email and a saved name after it is stored.</li>
+        </ul>
     </div>
+    
+    <div id="Output" class="tab">
+        <h3>Email Validation and Local Storage Example</h3>
+        <h3>Type an email address in the input box and click "Validate" to check if it's valid.</h3>
+        <h3>Enter your name in the second input box and click "Save Name" to store it in local storage.</h3>
+        <button onclick="openNewTab()">Open in New Tab Output</button>
+    </div>
+
+    <script>
+        function openNewTab() {
+            window.open("ACTIVITY9OUTPUT.html", "_blank");
+        }
+    </script>
+
+    </div>
+
 
     <script>
         let quizSubmitted = false;
