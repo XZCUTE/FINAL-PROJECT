@@ -1,4 +1,11 @@
-<div id="Output" class="tab">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Change Background Color by button</title>
+</head>
+<body>
     <h3>Change Background Color</h3>
     <button onclick="changeColor('red')">Red</button>
     <button onclick="changeColor('blue')">Blue</button>
@@ -6,10 +13,11 @@
     <button onclick="changeColor('green')">Green</button>
     <button onclick="changeColor('purple')">Purple</button>
     <button onclick="changeColor('white')">Reset</button>
-</div>
 
-<script>
-    function changeColor(color) {
+    <script>
+        function changeColor(color) {
         document.body.style.backgroundColor = color;
-    }
-</script>
+        }
+    </script>
+</body>
+</html>

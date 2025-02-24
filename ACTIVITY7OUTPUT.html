@@ -1,21 +1,44 @@
-<div id="Output" class="tab">
-    <h1>Change Background Color Dynamically</h1>
-    <h1>Resize the browser window to see the background color change.</h1>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Change the background color dynamically based on the window size.</title>
+</head>
+<body>
+    <h3>Change Background Color Dynamically</h3>
+    <h3>Resize the browser window to see the background color change.</h3>
 
-<script>
-    function Mark() {
-  const width = window.innerWidth;
+    <script>
+        function Mark() {
+        const width = window.innerWidth;
 
-  if (width <= 480) {
-    document.body.style.backgroundColor = "red"; // Phones
-  } else if (width <= 1024) {
-    document.body.style.backgroundColor = "blue"; // Tablets
-  } else {
-    document.body.style.backgroundColor = "yellow"; // Desktops
-  }
-}
-
-window.addEventListener("load", Mark);
-window.addEventListener("resize", Mark);
-</script>
+        if (width > 5120) {
+            document.body.style.backgroundColor = "magenta";
+        } else if (width > 1440) {
+            document.body.style.backgroundColor = "gold";
+        } else if (width > 1280) {
+            document.body.style.backgroundColor = "lime";
+        } else if (width > 1024) {
+            document.body.style.backgroundColor = "cyan";
+        } else if (width > 912) {
+            document.body.style.backgroundColor = "pink";
+        } else if (width > 820) {
+            document.body.style.backgroundColor = "teal";
+        } else if (width > 768) {
+            document.body.style.backgroundColor = "orange";
+        } else if (width > 430) {
+            document.body.style.backgroundColor = "purple";
+        } else if (width > 414) {
+            document.body.style.backgroundColor = "lightblue";
+        } else if (width > 390) {
+            document.body.style.backgroundColor = "yellow";
+        } else if (width > 375) {
+            document.body.style.backgroundColor = "blue";
+        } else {
+            document.body.style.backgroundColor = "red";
+            }
+        }
+        window.addEventListener("load", Mark);
+        window.addEventListener("resize", Mark);
+    </script>
