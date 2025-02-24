@@ -1,46 +1,21 @@
 <div id="Output" class="tab">
-    <h3>Change Background Color Dynamically</h3>
-    <h3>Resize the browser window to see the background color change.</h3>
+    <h1>Change Background Color Dynamically</h1>
+    <h1>Resize the browser window to see the background color change.</h1>
 </div>
 
 <script>
     function Mark() {
-    const width = window.innerWidth;
-    const height = window.innerHeight;
+  const width = window.innerWidth;
 
-    if (width <= 375 && height <= 667) { 
-        document.body.style.backgroundColor = "red"; // iPhone SE 
-    } else if (width <= 390 && height <= 844) {
-        document.body.style.backgroundColor = "green"; // iPhone 12 Pro 
-    } else if (width <= 414 && height <= 896) {
-        document.body.style.backgroundColor = "blue"; // iPhone XR (414x896)
-    } else if (width <= 412 && height <= 915) {
-        document.body.style.backgroundColor = "yellow"; // Pixel 7, Galaxy S8+, Galaxy S20 Ultra 
-    } else if (width <= 430 && height <= 932) {
-        document.body.style.backgroundColor = "lightblue"; // iPhone 14 Pro Max 
-    } else if (width <= 768 && height <= 1024) {
-        document.body.style.backgroundColor = "purple"; // iPad Mini, iPad Air 
-    } else if (width <= 820 && height <= 1180) {
-        document.body.style.backgroundColor = "orange"; // Surface Duo 
-    } else if (width <= 912 && height <= 1368) {
-        document.body.style.backgroundColor = "teal"; // Galaxy Z Fold 5 
-    } else if (width <= 1024 && height <= 1366) {
-        document.body.style.backgroundColor = "pink"; // iPad Pro, Surface Pro 7 
-    } else if (width <= 1280 && height <= 1800) {
-        document.body.style.backgroundColor = "cyan"; // Asus Zenbook Fold
-    } else if (width <= 1440 && height <= 2560) {
-        document.body.style.backgroundColor = "gold"; // Samsung Galaxy A51/71 
-    } else if (width <= 1920 && height <= 1080) {
-        document.body.style.backgroundColor = "lime"; // Nest Hub
-    } else if (width > 1920 || height > 1080) {
-        document.body.style.backgroundColor = "magenta"; // Nest Hub Max & larger screens
-    } else {
-        document.body.style.backgroundColor = "white"; 
-    }
+  if (width <= 480) {
+    document.body.style.backgroundColor = "red"; // Phones
+  } else if (width <= 1024) {
+    document.body.style.backgroundColor = "blue"; // Tablets
+  } else {
+    document.body.style.backgroundColor = "yellow"; // Desktops
+  }
 }
 
 window.addEventListener("load", Mark);
 window.addEventListener("resize", Mark);
-
-
 </script>
